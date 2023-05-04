@@ -177,6 +177,14 @@ class Connection
     }
 
     /**
+     * @return Account
+     */
+    public function getAccount() : Account
+    {
+        return $this->account;
+    }
+
+    /**
      * @param string $key
      * @param mixed $value
      * @return Connection
