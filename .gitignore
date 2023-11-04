@@ -2,3 +2,4 @@ vendor
 test.php
 process-test.php
 composer.lock
+src/token.json

@@ -116,6 +116,16 @@ class Connection
     }
 
     /**
+     * @return void
+     */
+    public function deleteTokenFile()
+    {
+        if (file_exists($this->tokenFile)) {
+            unlink($this->tokenFile);
+        }
+    }
+
+    /**
      * @return object|null
      */
     public function getTokenData() : ?object
