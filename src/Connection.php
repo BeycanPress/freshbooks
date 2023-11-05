@@ -6,6 +6,7 @@ use BeycanPress\FreshBooks\Model\Client;
 use BeycanPress\FreshBooks\Model\Invoice;
 use BeycanPress\FreshBooks\Model\Account;
 use BeycanPress\FreshBooks\Model\Payment;
+use BeycanPress\FreshBooks\Model\Expense;
 use BeycanPress\Http\Client as HttpClient;
 
 class Connection
@@ -429,5 +430,13 @@ class Connection
     public function payment() : Payment
     {
         return new Payment($this);
+    }
+
+    /**
+     * @return Expense
+     */
+    public function expense() : Expense
+    {
+        return new Expense($this);
     }
 }
