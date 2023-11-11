@@ -37,7 +37,7 @@ By taking this "code" parameter, your FreshBooks connection will be established 
 
 // Get access token
 $authCode = isset($_GET['code']) ? $_GET['code'] : null;
-$conneciton->getAccessTokenByAuthCode($authCode);
+$connection->getAccessTokenByAuthCode($authCode);
 ```
 
 Then you need to use the "setAccount" method to tell the SDK which account to operate on as follows. If you don't pass an $id parameter, it will choose the first account. Or you can use the "getAccounts" method to get the accounts, save them in your database and set the account selected there.
@@ -46,7 +46,7 @@ Then you need to use the "setAccount" method to tell the SDK which account to op
 <?php
 
 // Set account and get account id for save db
-$account = $conneciton->setAccount(?$id)->getAccount();
+$account = $connection->setAccount(?$id)->getAccount();
 
 // save $account->getId() to your database
 ```
@@ -80,7 +80,7 @@ if (file_exists($connection->getTokenFile())) {
 $authRequestUrl = $connection->getAuthRequestUrl();
 
 // Get access token
-$conneciton->getAccessTokenByAuthCode(/* get code from $authRequestUrl */);
+$connection->getAccessTokenByAuthCode(/* get code from $authRequestUrl */);
 
 // Refresh access token
 // $direct (bool) is optional. If you want to renew instantly before the token expires.
@@ -181,7 +181,7 @@ $invoice->setDescription(/* description */);
 $invoice->update();
 
 // Create client if not exist
-$client = $conneciton->client();
+$client = $connection->client();
 
 if (!$client->searchByEmail(/* email */)) {
     $client->setEmail(/* email */)
