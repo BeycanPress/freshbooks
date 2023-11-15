@@ -513,7 +513,7 @@ class Invoice
      */
     public function setStatus(string $status): Invoice
     {
-        if (!in_array($status, $this->statuses)) {
+        if (!isset($this->statuses[$status])) {
             throw new \InvalidArgumentException('Invalid status');
         }
 
