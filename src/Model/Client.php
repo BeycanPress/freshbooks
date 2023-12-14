@@ -408,12 +408,12 @@ class Client
     }
 
     /**
-     * @param array $lateReminders
+     * @param array|null $lateReminders
      * @return Client
      */
-    public function setLateReminders(array $lateReminders) : Client
+    public function setLateReminders(?array $lateReminders) : Client
     {
-        $this->lateReminders = $lateReminders;
+        $this->lateReminders = $lateReminders ?? [];
         return $this;
     }
 
