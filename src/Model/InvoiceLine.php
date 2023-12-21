@@ -292,7 +292,7 @@ class InvoiceLine
         return array_filter([
             'invoiceid' => $this->invoiceId,
             'name' => $this->name,
-            'quantity' => $this->quantity,
+            'qty' => $this->quantity,
             'type' => $this->type,
             'description' => $this->description,
             'expenseid' => $this->expenseId,
@@ -314,7 +314,7 @@ class InvoiceLine
     {
         return $this->setInvoiceId($data['invoiceid'])
             ->setName($data['name'])
-            ->setQuantity($data['quantity'])
+            ->setQuantity($data['qty'])
             ->setType($data['type'])
             ->setDescription($data['description'])
             ->setExpenseId($data['expenseid'])
