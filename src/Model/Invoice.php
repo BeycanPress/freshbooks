@@ -752,10 +752,10 @@ class Invoice
     }
 
     /**
-     * @param string $discountDescription
+     * @param ?string $discountDescription
      * @return Invoice
      */
-    public function setDiscountDescription(string $discountDescription): Invoice
+    public function setDiscountDescription(?string $discountDescription): Invoice
     {
         $this->discountDescription = $discountDescription;
         return $this;
