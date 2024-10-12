@@ -1,4 +1,6 @@
-<?php 
+<?php
+
+declare(strict_types=1);
 
 namespace BeycanPress\FreshBooks\Model;
 
@@ -7,38 +9,38 @@ class ClientContact
     /**
      * @var string
      */
-    private $email;
+    private string $email;
 
     /**
      * @var string
      */
-    private $firstName;
+    private string $firstName;
 
     /**
      * @var string
      */
-    private $lastName;
+    private string $lastName;
 
     /**
      * @var string
      */
-    private $phone;
+    private string $phone;
 
     /**
      * @var string
      */
-    private $userId;
+    private string $userId;
 
     /**
      * @var string
      */
-    private $face;
+    private string $face;
 
     /**
      * @param string $email
      * @return ClientContact
      */
-    public function setEmail(string $email) : ClientContact
+    public function setEmail(string $email): ClientContact
     {
         $this->email = $email;
         return $this;
@@ -48,7 +50,7 @@ class ClientContact
      * @param string $firstName
      * @return ClientContact
      */
-    public function setFirstName(string $firstName) : ClientContact
+    public function setFirstName(string $firstName): ClientContact
     {
         $this->firstName = $firstName;
         return $this;
@@ -58,7 +60,7 @@ class ClientContact
      * @param string $lastName
      * @return ClientContact
      */
-    public function setLastName(string $lastName) : ClientContact
+    public function setLastName(string $lastName): ClientContact
     {
         $this->lastName = $lastName;
         return $this;
@@ -68,7 +70,7 @@ class ClientContact
      * @param string $phone
      * @return ClientContact
      */
-    public function setPhone(string $phone) : ClientContact
+    public function setPhone(string $phone): ClientContact
     {
         $this->phone = $phone;
         return $this;
@@ -78,7 +80,7 @@ class ClientContact
      * @param string $userId
      * @return ClientContact
      */
-    public function setUserId(string $userId) : ClientContact
+    public function setUserId(string $userId): ClientContact
     {
         $this->userId = $userId;
         return $this;
@@ -88,7 +90,7 @@ class ClientContact
      * @param string $face
      * @return ClientContact
      */
-    public function setFace(string $face) : ClientContact
+    public function setFace(string $face): ClientContact
     {
         $this->face = $face;
         return $this;
@@ -97,7 +99,7 @@ class ClientContact
     /**
      * @return string
      */
-    public function getEmail() : string
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -105,7 +107,7 @@ class ClientContact
     /**
      * @return string
      */
-    public function getFirstName() : string
+    public function getFirstName(): string
     {
         return $this->firstName;
     }
@@ -113,7 +115,7 @@ class ClientContact
     /**
      * @return string
      */
-    public function getLastName() : string
+    public function getLastName(): string
     {
         return $this->lastName;
     }
@@ -121,7 +123,7 @@ class ClientContact
     /**
      * @return string
      */
-    public function getPhone() : string
+    public function getPhone(): string
     {
         return $this->phone;
     }
@@ -129,7 +131,7 @@ class ClientContact
     /**
      * @return string
      */
-    public function getUserId() : string
+    public function getUserId(): string
     {
         return $this->userId;
     }
@@ -137,15 +139,15 @@ class ClientContact
     /**
      * @return string
      */
-    public function getFace() : string
+    public function getFace(): string
     {
         return $this->face;
     }
 
     /**
-     * @return array
+     * @return array<string,string>
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         return array_filter([
             'email' => $this->email,
@@ -158,10 +160,10 @@ class ClientContact
     }
 
     /**
-     * @param array $data
+     * @param array<string,string> $data
      * @return ClientContact
      */
-    public function fromArray(array $data) : ClientContact
+    public function fromArray(array $data): ClientContact
     {
         return $this->setEmail($data['email'])
             ->setFirstName($data['first_name'])
@@ -170,5 +172,4 @@ class ClientContact
             ->setUserId($data['user_id'])
             ->setFace($data['face']);
     }
-    
 }

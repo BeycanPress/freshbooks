@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BeycanPress\FreshBooks;
 
 use BeycanPress\FreshBooks\Model\Client;
@@ -7,82 +9,81 @@ use BeycanPress\FreshBooks\Model\Invoice;
 use BeycanPress\FreshBooks\Model\Account;
 use BeycanPress\FreshBooks\Model\Payment;
 use BeycanPress\FreshBooks\Model\Expense;
-use BeycanPress\Http\Client as HttpClient;
 
 class Connection
 {
     /**
      * @var string
      */
-    private $appId;
+    private string $appId;
 
     /**
      * @var string
      */
-    private $appSecret;
+    private string $appSecret;
 
     /**
      * @var string
      */
-    private $redirectUri;
+    private string $redirectUri;
 
     /**
      * @var string
      */
-    private $accessToken;
+    private string $accessToken;
 
     /**
      * @var string
      */
-    private $refreshToken;
+    private string $refreshToken;
 
     /**
      * @var string
      */
-    private $apiUrl = 'https://api.freshbooks.com/';
-    
-    /**
-     * @var string
-     */
-    private $authUrl = 'https://auth.freshbooks.com/';
+    private string $apiUrl = 'https://api.freshbooks.com/';
 
     /**
      * @var string
      */
-    private $tokenFile;
+    private string $authUrl = 'https://auth.freshbooks.com/';
 
     /**
-     * @var array
+     * @var string
      */
-    private $payload = [];
-    
+    private string $tokenFile;
+
+    /**
+     * @var array<string,mixed>
+     */
+    private array $payload = [];
+
     /**
      * @var HttpClient
      */
-    private $httpClient;
+    private HttpClient $httpClient;
 
     /**
-     * @var object
+     * @var object|null
      */
-    private $profile;
+    private ?object $profile = null;
 
     /**
      * @var Account
      */
-    private $account;
+    private Account $account;
 
     /**
-     * @var array
+     * @var array<string,object>
      */
-    private $accounts = [];
+    private array $accounts = [];
 
     /**
      * @see https://www.freshbooks.com/api/errors
-     * 
-     * @var array
+     *
+     * @var array<string>
      */
-    private $errors = [];
-    
+    private array $errors = [];
+
     /**
      * @param string $appId
      * @param string $appSecret
@@ -94,7 +95,7 @@ class Connection
         $this->appSecret = $appSecret;
         $this->redirectUri = $redirectUri;
         $this->httpClient = new HttpClient();
-        
+
         $this->payload = [
             'client_id' => $this->appId,
             'client_secret' => $this->appSecret,
@@ -111,7 +112,7 @@ class Connection
     /**
      * @return string
      */
-    public function getTokenFile() : string
+    public function getTokenFile(): string
     {
         return $this->tokenFile;
     }
@@ -119,7 +120,7 @@ class Connection
     /**
      * @return void
      */
-    public function deleteTokenFile()
+    public function deleteTokenFile(): void
     {
         if (file_exists($this->tokenFile)) {
             unlink($this->tokenFile);
@@ -129,7 +130,7 @@ class Connection
     /**
      * @return object|null
      */
-    public function getTokenData() : ?object
+    public function getTokenData(): ?object
     {
         if (file_exists($this->tokenFile)) {
             return json_decode(file_get_contents($this->tokenFile));
@@ -142,10 +143,12 @@ class Connection
      * @param bool $direct
      * @return void
      */
-    public function refreshAuthentication(bool $direct = false)
+    public function refreshAuthentication(bool $direct = false): void
     {
         if ($this->refreshToken) {
-            if (!$direct && !$this->getExpireStatus()) return;
+            if (!$direct && !$this->getExpireStatus()) {
+                return;
+            }
             $this->getAccessTokenByRefreshToken($this->refreshToken);
         } else {
             throw new \Exception('Refresh token not found.');
@@ -155,7 +158,7 @@ class Connection
     /**
      * @return boolean
      */
-    public function getExpireStatus() : bool
+    public function getExpireStatus(): bool
     {
         if (!file_exists($this->tokenFile)) {
             throw new \Exception('Token file not found.');
@@ -171,7 +174,7 @@ class Connection
      * @param string|null $id
      * @return Connection
      */
-    public function setAccount(?string $id = null) : Connection
+    public function setAccount(?string $id = null): Connection
     {
         if (isset($this->getAccounts()[$id])) {
             $this->account = new Account($this->accounts[$id]);
@@ -186,7 +189,7 @@ class Connection
     /**
      * @return Account
      */
-    public function getAccount() : Account
+    public function getAccount(): Account
     {
         return $this->account;
     }
@@ -196,17 +199,17 @@ class Connection
      * @param mixed $value
      * @return Connection
      */
-    private function addPayloadParam(string $key, $value) : Connection
+    private function addPayloadParam(string $key, mixed $value): Connection
     {
         $this->payload[$key] = $value;
         return $this;
     }
 
     /**
-     * @param array $params
+     * @param array<mixed> $params
      * @return Connection
      */
-    private function addPayloadParams(array $params) : Connection
+    private function addPayloadParams(array $params): Connection
     {
         $this->payload = array_merge($this->payload, $params);
         return $this;
@@ -216,7 +219,7 @@ class Connection
      * @param string $path
      * @return string
      */
-    public function createApiUrl(string $path) : string
+    public function createApiUrl(string $path): string
     {
         return $this->apiUrl . $path;
     }
@@ -225,13 +228,13 @@ class Connection
      * @param string $path
      * @return string
      */
-    public function createAuthUrl(string $path) : string
+    public function createAuthUrl(string $path): string
     {
         return $this->authUrl . $path;
     }
 
     /**
-     * @param array $scopes
+     * @param array<string> $scopes
      * @return string
      */
     public function getAuthRequestUrl(array $scopes = []): string
@@ -251,7 +254,7 @@ class Connection
      * @param string $grandType
      * @return object
      */
-    public function getToken(string $code, string $codeType = 'code', string $grandType = 'authorization_code') : object
+    public function getToken(string $code, string $codeType = 'code', string $grandType = 'authorization_code'): object
     {
         $this->addPayloadParams([
             'grant_type' => $grandType,
@@ -260,7 +263,7 @@ class Connection
 
         $this->httpClient->deleteHeader('Content-Type')->deleteHeader('Authorization');
         $res = $this->checkError($this->httpClient->post($this->apiUrl . 'auth/oauth/token', $this->payload));
-        
+
         file_put_contents($this->tokenFile, json_encode($res));
 
         return $res;
@@ -270,7 +273,7 @@ class Connection
      * @param object $tokens
      * @return string
      */
-    private function setTokens(object $tokens) : string
+    private function setTokens(object $tokens): string
     {
         $this->accessToken = $tokens->access_token;
         $this->refreshToken = $tokens->refresh_token;
@@ -279,23 +282,23 @@ class Connection
         return $this->accessToken;
     }
 
-    
+
     /**
      * @param string $code
      * @return string
      */
-    public function getAccessTokenByAuthCode(string $code) : string
+    public function getAccessTokenByAuthCode(string $code): string
     {
         return $this->setTokens($this->getToken($code));
     }
 
-    
+
     /**
      * @param string $refreshToken
      * @return string
      */
-    public function getAccessTokenByRefreshToken(string $refreshToken) : string
-    {        
+    public function getAccessTokenByRefreshToken(string $refreshToken): string
+    {
         return $this->setTokens($this->getToken($refreshToken, 'refresh_token', 'refresh_token'));
     }
 
@@ -312,16 +315,18 @@ class Connection
     /**
      * @return object
      */
-    public function getProfile() : object
+    public function getProfile(): object
     {
-        if ($this->profile) return $this->profile;
+        if ($this->profile) {
+            return $this->profile;
+        }
         return $this->profile = $this->checkError($this->httpClient->get($this->apiUrl . 'auth/api/v1/users/me'));
     }
 
     /**
-     * @return array
+     * @return array<object>
      */
-    public function getBusinessMemberships() : array
+    public function getBusinessMemberships(): array
     {
         return $this->getProfile()->business_memberships;
     }
@@ -329,17 +334,19 @@ class Connection
     /**
      * @return object
      */
-    public function getFirstAccount() : object
+    public function getFirstAccount(): object
     {
         return $this->getBusinessMemberships()[0]->business;
     }
 
     /**
-     * @return array
+     * @return array<object>
      */
-    public function getAccounts() : array
+    public function getAccounts(): array
     {
-        if ($this->accounts) return $this->accounts;
+        if ($this->accounts) {
+            return $this->accounts;
+        }
         $memberships = $this->getBusinessMemberships();
         $memberships = array_column($memberships, 'business');
         foreach ($memberships as $membership) {
@@ -353,13 +360,12 @@ class Connection
 
     /**
      * @param string $name
-     * @param array $arguments
+     * @param array<mixed> $arguments
      * @return mixed
      */
-    public function __call(string $name, array $arguments)
+    public function __call(string $name, array $arguments): mixed
     {
         if (in_array(strtoupper($name), $this->httpClient->getMethods())) {
-
             if (!$this->account) {
                 throw new \Exception('Account not set!');
             }
@@ -371,15 +377,13 @@ class Connection
     }
 
     /**
-     * @param string $path
-     * @param array $params
+     * @param mixed $res
      * @return mixed
-     * @throws \Exception
      */
-    private function checkError($res)
+    private function checkError(mixed $res): mixed
     {
         if (isset($res->error) || isset($res->error_type) || isset($res->message) || isset($res->errors)) {
-            if (isset($res->error) && $res->error == 'unauthenticated') {
+            if (isset($res->error) && 'unauthenticated' == $res->error) {
                 throw new \Exception('Unauthenticated, you need to get access token by auth code first!');
             } else {
                 throw new \Exception($res->error_description ?? $res->message);
@@ -392,7 +396,6 @@ class Connection
             }
 
             if (isset($res->response)) {
-
                 if (isset($res->response->errors)) {
                     throw new \Exception($res->response->errors[0]->message);
                 }
@@ -403,7 +406,7 @@ class Connection
                     return $res->response;
                 }
             }
-            
+
             return $res;
         }
     }
@@ -411,7 +414,7 @@ class Connection
     /**
      * @return Client
      */
-    public function client() : Client
+    public function client(): Client
     {
         return new Client($this);
     }
@@ -419,7 +422,7 @@ class Connection
     /**
      * @return Invoice
      */
-    public function invoice() : Invoice
+    public function invoice(): Invoice
     {
         return new Invoice($this);
     }
@@ -427,7 +430,7 @@ class Connection
     /**
      * @return Payment
      */
-    public function payment() : Payment
+    public function payment(): Payment
     {
         return new Payment($this);
     }
@@ -435,7 +438,7 @@ class Connection
     /**
      * @return Expense
      */
-    public function expense() : Expense
+    public function expense(): Expense
     {
         return new Expense($this);
     }

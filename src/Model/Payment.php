@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BeycanPress\FreshBooks\Model;
 
 use BeycanPress\FreshBooks\Connection;
@@ -9,92 +11,92 @@ class Payment
     /**
      * @var int
      */
-    private $id;
+    private int $id;
 
     /**
      * @var int
      */
-    private $invoiceId;
+    private int $invoiceId;
 
     /**
      * @var int
      */
-    private $clientId;
+    private int $clientId;
 
     /**
      * @var object
      */
-    private $amount;
+    private object $amount;
 
     /**
      * @var string
      */
-    private $accountingSystemId;
+    private string $accountingSystemId;
 
     /**
      * @var int|null
      */
-    private $bulkPaymentId;
+    private ?int $bulkPaymentId = null;
 
     /**
      * @var int|null
      */
-    private $creditId;
+    private ?int $creditId = null;
 
     /**
      * @var string
      */
-    private $date;
+    private string $date;
 
     /**
      * @var bool
      */
-    private $fromCredit;
+    private bool $fromCredit;
 
     /**
      * @var string|null
      */
-    private $gateway;
+    private ?string $gateway = null;
 
     /**
      * @var int
      */
-    private $logId;
+    private int $logId;
 
     /**
      * @var string
      */
-    private $note;
+    private string $note;
 
     /**
      * @var string|null
      */
-    private $orderId;
+    private ?string $orderId = null;
 
     /**
      * @var int|null
      */
-    private $overPaymentId;
+    private ?int $overPaymentId = null;
 
     /**
      * @var bool|null
      */
-    private $sendClientNotification;
+    private ?bool $sendClientNotification = null;
 
     /**
      * @var string|null
      */
-    private $transactionId;
+    private ?string $transactionId = null;
 
     /**
      * @var string
      */
-    private $type;
+    private string $type;
 
     /**
-     * @var array
+     * @var array<string>
      */
-    private $types = [
+    private array $types = [
         '2Checkout',
         'ACH',
         'Bank Transfer',
@@ -115,17 +117,17 @@ class Payment
     /**
      * @var string
      */
-    private $updated;
+    private string $updated;
 
     /**
      * @var int
      */
-    private $visState;
+    private int $visState;
 
     /**
      * @var Connection
      */
-    private $conn;
+    private Connection $conn;
 
     /**
      * @param Connection $conn
@@ -462,7 +464,7 @@ class Payment
     }
 
     /**
-     * @return array
+     * @return array<string>
      */
     public function getTypes(): array
     {
@@ -486,7 +488,7 @@ class Payment
     }
 
     /**
-     * @return array
+     * @return array<string>
      */
     public function toArray(): array
     {
@@ -517,7 +519,7 @@ class Payment
      * @param object $data
      * @return Payment
      */
-    public function fromObject(object $data) : Payment
+    public function fromObject(object $data): Payment
     {
         return $this->setId($data->id)
             ->setInvoiceId($data->invoiceid)
@@ -544,7 +546,7 @@ class Payment
      * @param string $id
      * @return Payment
      */
-    public function getById(string $id) : Payment
+    public function getById(string $id): Payment
     {
         return $this->fromObject($this->conn->get('payments/payments/' . $id)->payment);
     }
@@ -552,7 +554,7 @@ class Payment
     /**
      * @return Payment
      */
-    public function create() : Payment
+    public function create(): Payment
     {
         return $this->fromObject($this->conn->post('payments/payments', [
             "payment" => $this->toArray()
@@ -563,10 +565,10 @@ class Payment
      * @param int|null $id
      * @return Payment
      */
-    public function update(?int $id = null) : Payment
+    public function update(?int $id = null): Payment
     {
         return $this->fromObject($this->conn->put('payments/payments/' . strval($id ?? $this->getId()), [
-            "payment" => array_filter($this->toArray(), function($key) {
+            "payment" => array_filter($this->toArray(), function ($key) {
                 return !in_array($key, ['id', 'clientid', 'accounting_systemid', 'updated']);
             }, ARRAY_FILTER_USE_KEY)
         ], true)->payment);
@@ -576,7 +578,7 @@ class Payment
      * @param int|null $id
      * @return Invoice
      */
-    public function delete(?int $id = null) : Payment
+    public function delete(?int $id = null): Payment
     {
         return $this->fromObject($this->conn->put('payments/payments/' . strval($id  ?? $this->getId()), [
             "payment" => [

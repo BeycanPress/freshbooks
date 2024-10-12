@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BeycanPress\FreshBooks\Model;
 
 use BeycanPress\FreshBooks\Helpers;
@@ -12,142 +14,142 @@ class Client
     /**
      * @var int
      */
-    private $id;
+    private int $id;
 
     /**
      * @var string
      */
-    private $role;
+    private string $role;
 
     /**
      * @var string
      */
-    private $firstName;
+    private string $firstName;
 
     /**
      * @var string
      */
-    private $lastName;
+    private string $lastName;
 
     /**
      * @var string
      */
-    private $email;
+    private string $email;
 
     /**
      * @var string
      */
-    private $organization;
+    private string $organization;
 
     /**
      * @var ?string
      */
-    private $vatName = null;
+    private ?string $vatName = null;
 
     /**
      * @var ?string
      */
-    private $vatNumber = null;
+    private ?string $vatNumber = null;
 
     /**
      * @var ?string
      */
-    private $status = null;
+    private ?string $status = null;
 
     /**
      * @var ?string
      */
-    private $note = null;
+    private ?string $note = null;
 
     /**
      * @var ?string
      */
-    private $homePhone = null;
+    private ?string $homePhone = null;
 
     /**
      * @var ?string
      */
-    private $mobilePhone = null;
+    private ?string $mobilePhone = null;
 
     /**
      * @var ?string
      */
-    private $source = null;
+    private ?string $source = null;
 
     /**
      * @var ?string
      */
-    private $highlightString = null;
+    private ?string $highlightString = null;
 
     /**
      * @var string
      */
-    private $billingStreet;
+    private string $billingStreet;
 
     /**
      * @var ?string
      */
-    private $billingStreet2 = null;
+    private ?string $billingStreet2 = null;
 
     /**
      * @var string
      */
-    private $billingCity;
+    private string $billingCity;
 
     /**
      * @var string
      */
-    private $billingCountry;
+    private string $billingCountry;
 
     /**
      * @var string
      */
-    private $billingProvince;
+    private string $billingProvince;
 
     /**
      * @var string|null
      */
-    private $billingPostalCode;
+    private ?string $billingPostalCode = null;
 
     /**
      * @var string
      */
-    private $currencyCode;
+    private string $currencyCode;
 
     /**
      * @var string
      */
-    private $language;
+    private string $language;
 
     /**
      * @var ?string
      */
-    private $lastActivity = null;
+    private ?string $lastActivity = null;
 
     /**
      * @var ?string
      */
-    private $face = null;
+    private ?string $face = null;
 
     /**
      * @var ?string
      */
-    private $lateFee = null;
+    private ?string $lateFee = null;
 
     /**
-     * @var array
+     * @var array<string>
      */
-    private $lateReminders = [];
+    private array $lateReminders = [];
 
     /**
-     * @var array
+     * @var array<ClientContact>
      */
-    private $contacts = [];
+    private array $contacts = [];
 
     /**
      * @var Connection
      */
-    private $conn;
+    private Connection $conn;
 
     /**
      * @param Connection $conn
@@ -161,7 +163,7 @@ class Client
      * @param integer $id
      * @return Client
      */
-    public function setId(int $id) : Client
+    public function setId(int $id): Client
     {
         $this->id = $id;
         return $this;
@@ -171,7 +173,7 @@ class Client
      * @param string $role
      * @return Client
      */
-    public function setRole(string $role) : Client
+    public function setRole(string $role): Client
     {
         $this->role = $role;
         return $this;
@@ -181,7 +183,7 @@ class Client
      * @param string $firstName
      * @return Client
      */
-    public function setFirstName(string $firstName) : Client
+    public function setFirstName(string $firstName): Client
     {
         $this->firstName = $firstName;
         return $this;
@@ -191,7 +193,7 @@ class Client
      * @param string $lastName
      * @return Client
      */
-    public function setLastName(string $lastName) : Client
+    public function setLastName(string $lastName): Client
     {
         $this->lastName = $lastName;
         return $this;
@@ -201,7 +203,7 @@ class Client
      * @param string $email
      * @return Client
      */
-    public function setEmail(string $email) : Client
+    public function setEmail(string $email): Client
     {
         $this->email = $email;
         return $this;
@@ -211,7 +213,7 @@ class Client
      * @param string $organization
      * @return Client
      */
-    public function setOrganization(string $organization) : Client
+    public function setOrganization(string $organization): Client
     {
         $this->organization = $organization;
         return $this;
@@ -221,7 +223,7 @@ class Client
      * @param string|null $vatName
      * @return Client
      */
-    public function setVatName(?string $vatName) : Client
+    public function setVatName(?string $vatName): Client
     {
         $this->vatName = $vatName;
         return $this;
@@ -231,7 +233,7 @@ class Client
      * @param string|null $vatNumber
      * @return Client
      */
-    public function setVatNumber(?string $vatNumber) : Client
+    public function setVatNumber(?string $vatNumber): Client
     {
         $this->vatNumber = $vatNumber;
         return $this;
@@ -241,7 +243,7 @@ class Client
      * @param string|null $status
      * @return Client
      */
-    public function setStatus(?string $status) : Client
+    public function setStatus(?string $status): Client
     {
         $this->status = $status;
         return $this;
@@ -251,7 +253,7 @@ class Client
      * @param string|null $note
      * @return Client
      */
-    public function setNote(?string $note) : Client
+    public function setNote(?string $note): Client
     {
         $this->note = $note;
         return $this;
@@ -261,7 +263,7 @@ class Client
      * @param string|null $homePhone
      * @return Client
      */
-    public function setHomePhone(?string $homePhone) : Client
+    public function setHomePhone(?string $homePhone): Client
     {
         $this->homePhone = $homePhone;
         return $this;
@@ -271,7 +273,7 @@ class Client
      * @param string|null $mobilePhone
      * @return Client
      */
-    public function setMobilePhone(?string $mobilePhone) : Client
+    public function setMobilePhone(?string $mobilePhone): Client
     {
         $this->mobilePhone = $mobilePhone;
         return $this;
@@ -281,7 +283,7 @@ class Client
      * @param string|null $source
      * @return Client
      */
-    public function setSource(?string $source) : Client
+    public function setSource(?string $source): Client
     {
         $this->source = $source;
         return $this;
@@ -291,7 +293,7 @@ class Client
      * @param string|null $highlightString
      * @return Client
      */
-    public function setHighlightString(?string $highlightString) : Client
+    public function setHighlightString(?string $highlightString): Client
     {
         $this->highlightString = $highlightString;
         return $this;
@@ -301,7 +303,7 @@ class Client
      * @param string $billingStreet
      * @return Client
      */
-    public function setBillingStreet(string $billingStreet) : Client
+    public function setBillingStreet(string $billingStreet): Client
     {
         $this->billingStreet = $billingStreet;
         return $this;
@@ -311,7 +313,7 @@ class Client
      * @param string|null $billingStreet2
      * @return Client
      */
-    public function setBillingStreet2(?string $billingStreet2) : Client
+    public function setBillingStreet2(?string $billingStreet2): Client
     {
         $this->billingStreet2 = $billingStreet2;
         return $this;
@@ -321,7 +323,7 @@ class Client
      * @param string $billingCity
      * @return Client
      */
-    public function setBillingCity(string $billingCity) : Client
+    public function setBillingCity(string $billingCity): Client
     {
         $this->billingCity = $billingCity;
         return $this;
@@ -331,7 +333,7 @@ class Client
      * @param string $billingCountry
      * @return Client
      */
-    public function setBillingCountry(string $billingCountry) : Client
+    public function setBillingCountry(string $billingCountry): Client
     {
         $this->billingCountry = $billingCountry;
         return $this;
@@ -341,7 +343,7 @@ class Client
      * @param string $billingProvince
      * @return Client
      */
-    public function setBillingProvince(string $billingProvince) : Client
+    public function setBillingProvince(string $billingProvince): Client
     {
         $this->billingProvince = $billingProvince;
         return $this;
@@ -351,7 +353,7 @@ class Client
      * @param string|null $billingPostalCode
      * @return Client
      */
-    public function setBillingPostalCode(?string $billingPostalCode) : Client
+    public function setBillingPostalCode(?string $billingPostalCode): Client
     {
         $this->billingPostalCode = $billingPostalCode;
         return $this;
@@ -361,7 +363,7 @@ class Client
      * @param string $currencyCode
      * @return Client
      */
-    public function setCurrencyCode(string $currencyCode) : Client
+    public function setCurrencyCode(string $currencyCode): Client
     {
         $this->currencyCode = $currencyCode;
         return $this;
@@ -371,7 +373,7 @@ class Client
      * @param string $language
      * @return Client
      */
-    public function setLanguage(string $language) : Client
+    public function setLanguage(string $language): Client
     {
         $this->language = $language;
         return $this;
@@ -381,7 +383,7 @@ class Client
      * @param string|null $lastActivity
      * @return Client
      */
-    public function setLastActivity(?string $lastActivity) : Client
+    public function setLastActivity(?string $lastActivity): Client
     {
         $this->lastActivity = $lastActivity;
         return $this;
@@ -391,7 +393,7 @@ class Client
      * @param string|null $face
      * @return Client
      */
-    public function setFace(?string $face) : Client
+    public function setFace(?string $face): Client
     {
         $this->face = $face;
         return $this;
@@ -401,17 +403,17 @@ class Client
      * @param string|null $lateFee
      * @return Client
      */
-    public function setLateFee(?string $lateFee) : Client
+    public function setLateFee(?string $lateFee): Client
     {
         $this->lateFee = $lateFee;
         return $this;
     }
 
     /**
-     * @param array|null $lateReminders
+     * @param array<string>|null $lateReminders
      * @return Client
      */
-    public function setLateReminders(?array $lateReminders) : Client
+    public function setLateReminders(?array $lateReminders): Client
     {
         $this->lateReminders = $lateReminders ?? [];
         return $this;
@@ -421,7 +423,7 @@ class Client
      * @param ClientContact $contact
      * @return Client
      */
-    public function addContact(ClientContact $contact) : Client
+    public function addContact(ClientContact $contact): Client
     {
         $this->contacts[] = $contact;
         return $this;
@@ -430,7 +432,7 @@ class Client
     /**
      * @return int
      */
-    public function getId() : int
+    public function getId(): int
     {
         return $this->id;
     }
@@ -438,7 +440,7 @@ class Client
     /**
      * @return string
      */
-    public function getRole() : string
+    public function getRole(): string
     {
         return $this->role;
     }
@@ -446,7 +448,7 @@ class Client
     /**
      * @return string
      */
-    public function getFirstName() : string
+    public function getFirstName(): string
     {
         return $this->firstName;
     }
@@ -454,7 +456,7 @@ class Client
     /**
      * @return string
      */
-    public function getLastName() : string
+    public function getLastName(): string
     {
         return $this->lastName;
     }
@@ -462,7 +464,7 @@ class Client
     /**
      * @return string
      */
-    public function getEmail() : string
+    public function getEmail(): string
     {
         return $this->email;
     }
@@ -470,7 +472,7 @@ class Client
     /**
      * @return string
      */
-    public function getOrganization() : string
+    public function getOrganization(): string
     {
         return $this->organization;
     }
@@ -478,7 +480,7 @@ class Client
     /**
      * @return string|null
      */
-    public function getVatName() : ?string
+    public function getVatName(): ?string
     {
         return $this->vatName;
     }
@@ -486,7 +488,7 @@ class Client
     /**
      * @return string|null
      */
-    public function getVatNumber() : ?string
+    public function getVatNumber(): ?string
     {
         return $this->vatNumber;
     }
@@ -494,7 +496,7 @@ class Client
     /**
      * @return string|null
      */
-    public function getStatus() : ?string
+    public function getStatus(): ?string
     {
         return $this->status;
     }
@@ -502,7 +504,7 @@ class Client
     /**
      * @return string|null
      */
-    public function getNote() : ?string
+    public function getNote(): ?string
     {
         return $this->note;
     }
@@ -510,7 +512,7 @@ class Client
     /**
      * @return string|null
      */
-    public function getHomePhone() : ?string
+    public function getHomePhone(): ?string
     {
         return $this->homePhone;
     }
@@ -518,7 +520,7 @@ class Client
     /**
      * @return string|null
      */
-    public function getMobilePhone() : ?string
+    public function getMobilePhone(): ?string
     {
         return $this->mobilePhone;
     }
@@ -526,7 +528,7 @@ class Client
     /**
      * @return string|null
      */
-    public function getSource() : ?string
+    public function getSource(): ?string
     {
         return $this->source;
     }
@@ -534,7 +536,7 @@ class Client
     /**
      * @return string|null
      */
-    public function getHighlightString() : ?string
+    public function getHighlightString(): ?string
     {
         return $this->highlightString;
     }
@@ -542,7 +544,7 @@ class Client
     /**
      * @return string
      */
-    public function getBillingStreet() : string
+    public function getBillingStreet(): string
     {
         return $this->billingStreet;
     }
@@ -550,7 +552,7 @@ class Client
     /**
      * @return string|null
      */
-    public function getBillingStreet2() : ?string
+    public function getBillingStreet2(): ?string
     {
         return $this->billingStreet2;
     }
@@ -558,7 +560,7 @@ class Client
     /**
      * @return string
      */
-    public function getBillingCity() : string
+    public function getBillingCity(): string
     {
         return $this->billingCity;
     }
@@ -566,7 +568,7 @@ class Client
     /**
      * @return string
      */
-    public function getBillingCountry() : string
+    public function getBillingCountry(): string
     {
         return $this->billingCountry;
     }
@@ -574,7 +576,7 @@ class Client
     /**
      * @return string
      */
-    public function getBillingProvince() : string
+    public function getBillingProvince(): string
     {
         return $this->billingProvince;
     }
@@ -582,7 +584,7 @@ class Client
     /**
      * @return string|null
      */
-    public function getBillingPostalCode() : ?string
+    public function getBillingPostalCode(): ?string
     {
         return $this->billingPostalCode;
     }
@@ -590,7 +592,7 @@ class Client
     /**
      * @return string
      */
-    public function getCurrencyCode() : string
+    public function getCurrencyCode(): string
     {
         return $this->currencyCode;
     }
@@ -598,7 +600,7 @@ class Client
     /**
      * @return string
      */
-    public function getLanguage() : string
+    public function getLanguage(): string
     {
         return $this->language;
     }
@@ -606,7 +608,7 @@ class Client
     /**
      * @return string|null
      */
-    public function getLastActivity() : ?string
+    public function getLastActivity(): ?string
     {
         return $this->lastActivity;
     }
@@ -614,7 +616,7 @@ class Client
     /**
      * @return string|null
      */
-    public function getFace() : ?string
+    public function getFace(): ?string
     {
         return $this->face;
     }
@@ -622,23 +624,23 @@ class Client
     /**
      * @return string|null
      */
-    public function getLateFee() : ?string
+    public function getLateFee(): ?string
     {
         return $this->lateFee;
     }
 
     /**
-     * @return array
+     * @return array<string>
      */
-    public function getLateReminders() : array
+    public function getLateReminders(): array
     {
         return $this->lateReminders;
     }
 
     /**
-     * @return array
+     * @return array<ClientContact>
      */
-    public function getContacts() : array
+    public function getContacts(): array
     {
         return $this->contacts;
     }
@@ -646,15 +648,15 @@ class Client
     /**
      * @return object
      */
-    public function toObject() : object
+    public function toObject(): object
     {
         return (object) $this->toArray();
     }
 
     /**
-     * @return array
+     * @return array<mixed>
      */
-    public function toArray() : array 
+    public function toArray(): array
     {
         return array_filter([
             'id' => $this->id,
@@ -682,17 +684,17 @@ class Client
             'face' => $this->face,
             'late_fee' => $this->lateFee,
             'late_reminders' => $this->lateReminders,
-            'contacts' => is_array($this->contacts) ? array_map(function($val) {
+            'contacts' => is_array($this->contacts) ? array_map(function ($val) {
                 return $val->toArray();
             }, $this->contacts) : $this->contacts
         ]);
     }
 
     /**
-     * @param array $data
+     * @param array<mixed> $data
      * @return Client
      */
-    public function fromArray(array $data) : Client 
+    public function fromArray(array $data): Client
     {
         return $this->fromObject($this->arrayToObject($data));
     }
@@ -701,7 +703,7 @@ class Client
      * @param object $data
      * @return Client
      */
-    public function fromObject(object $data) : Client
+    public function fromObject(object $data): Client
     {
         $this->setId($data->id);
         $this->setRole($data->role);
@@ -728,11 +730,11 @@ class Client
         $this->setFace($data->face ?? null);
         $this->setLateFee($data->late_fee ?? null);
         $this->setLateReminders($data->late_reminders);
-        
+
         foreach ($data->contacts as $value) {
             $this->addContact((new ClientContact())->fromArray($value));
         }
-        
+
         return $this;
     }
 
@@ -740,7 +742,7 @@ class Client
      * @param string $id
      * @return Client
      */
-    public function getById(string $id) : Client
+    public function getById(string $id): Client
     {
         return $this->fromObject($this->conn->get('users/clients/' . $id)->client);
     }
@@ -748,7 +750,7 @@ class Client
     /**
      * @return Client
      */
-    public function create() : Client
+    public function create(): Client
     {
         return $this->fromObject($this->conn->post('users/clients', [
             "client" => $this->toArray()
@@ -759,7 +761,7 @@ class Client
      * @param int|null $id
      * @return Client
      */
-    public function update(?int $id = null) : Client
+    public function update(?int $id = null): Client
     {
         return $this->fromObject($this->conn->put('users/clients/' . strval($id ?? $this->getId()), [
             "client" => $this->toArray()
@@ -770,7 +772,7 @@ class Client
      * @param int|null $id
      * @return object
      */
-    public function delete(?int $id = null) : object
+    public function delete(?int $id = null): object
     {
         return $this->conn->put('users/clients/' . strval($id ?? $this->getId()), [
             "client" => [
@@ -781,21 +783,23 @@ class Client
 
     /**
      * @see https://www.freshbooks.com/api/parameters
-     * 
-     * @param array $clientData
+     *
+     * @param array<mixed> $clientData
      * @return Client|null
      */
-    public function search(array $clientData) : ?Client
+    public function search(array $clientData): ?Client
     {
         $data = '';
         foreach ($clientData as $key => $value) {
             $data .= "search$key=$value&";
         }
-    
+
         $res = $this->conn->get("users/clients?" . rtrim($data, '&'));
-    
-        if (!$res->total) return null;
-    
+
+        if (!$res->total) {
+            return null;
+        }
+
         return $this->fromObject($res->clients[0]);
     }
 
@@ -803,9 +807,8 @@ class Client
      * @param string $email
      * @return Client|null
      */
-    function searchByEmail(string $email) : ?Client
+    public function searchByEmail(string $email): ?Client
     {
         return $this->search(['[email]' => $email]);
     }
-    
 }

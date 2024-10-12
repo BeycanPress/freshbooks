@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BeycanPress\FreshBooks\Model;
 
 use BeycanPress\FreshBooks\Connection;
@@ -9,172 +11,172 @@ class Expense
     /**
      * @var int
      */
-    private $id;
+    private int $id;
 
     /**
      * @var int
      */
-    private $expenseId;
+    private int $expenseId;
 
     /**
      * @var int
      */
-    private $categoryId;
+    private int $categoryId;
 
     /**
      * @var int
      */
-    private $projectId;
+    private int $projectId;
 
     /**
      * @var int
      */
-    private $invoiceId;
+    private int $invoiceId;
 
     /**
      * @var int
      */
-    private $clientId;
+    private int $clientId;
 
     /**
      * @var int
      */
-    private $profileId;
+    private int $profileId;
 
     /**
      * @var string
      */
-    private $transactionId;
+    private string $transactionId;
 
     /**
      * @var string
      */
-    private $markupPercent;
+    private string $markupPercent;
 
     /**
      * @var string
      */
-    private $taxName1;
+    private string $taxName1;
 
     /**
      * @var object
      */
-    private $taxAmount1;
+    private object $taxAmount1;
 
     /**
      * @var string
      */
-    private $taxPercent1;
+    private string $taxPercent1;
 
     /**
      * @var string
      */
-    private $taxName2;
+    private string $taxName2;
 
     /**
      * @var object
      */
-    private $taxAmount2;
+    private object $taxAmount2;
 
     /**
      * @var string
      */
-    private $taxPercent2;
+    private string $taxPercent2;
 
     /**
      * @var bool
      */
-    private $isDuplicate;
+    private bool $isDuplicate;
 
     /**
      * @var string
      */
-    private $accountName;
+    private string $accountName;
 
     /**
      * @var int
      */
-    private $visState;
+    private int $visState;
 
     /**
      * @var int
      */
-    private $status;
+    private int $status;
 
     /**
      * @var string
      */
-    private $bankName;
+    private string $bankName;
 
     /**
      * @var string
      */
-    private $updated;
+    private string $updated;
 
     /**
      * @var string
      */
-    private $vendor;
+    private string $vendor;
 
     /**
      * @var int
      */
-    private $extSystemId;
+    private int $extSystemId;
 
     /**
      * @var int
      */
-    private $staffId;
+    private int $staffId;
 
     /**
      * @var string
      */
-    private $date;
+    private string $date;
 
     /**
      * @var bool
      */
-    private $hasReceipt;
+    private bool $hasReceipt;
 
     /**
      * @var string
      */
-    private $accountingSystemId;
+    private string $accountingSystemId;
 
     /**
      * @var int
      */
-    private $backgroundJobId;
+    private int $backgroundJobId;
 
     /**
      * @var string
      */
-    private $notes;
+    private string $notes;
 
     /**
      * @var int
      */
-    private $extInvoiceId;
+    private int $extInvoiceId;
 
     /**
      * @var object
      */
-    private $amount;
+    private object $amount;
 
     /**
      * @var bool
      */
-    private $compoundedTax;
+    private bool $compoundedTax;
 
     /**
      * @var int
      */
-    private $accountId;
+    private int $accountId;
 
     /**
      * @var Connection
      */
-    private $conn;
+    private Connection $conn;
 
     /**
      * @param Connection $conn
@@ -184,370 +186,604 @@ class Expense
         $this->conn = $conn;
     }
 
-    public function setId(int $id) : Expense
+    /**
+     * @param integer $id
+     * @return Expense
+     */
+    public function setId(int $id): Expense
     {
         $this->id = $id;
         return $this;
     }
 
-    public function setExpenseId(int $expenseId) : Expense
+    /**
+     * @param integer $expenseId
+     * @return Expense
+     */
+    public function setExpenseId(int $expenseId): Expense
     {
         $this->expenseId = $expenseId;
         return $this;
     }
 
-    public function setCategoryId(int $categoryId) : Expense
+    /**
+     * @param integer $categoryId
+     * @return Expense
+     */
+    public function setCategoryId(int $categoryId): Expense
     {
         $this->categoryId = $categoryId;
         return $this;
     }
 
-    public function setProjectId(int $projectId) : Expense
+    /**
+     * @param integer $projectId
+     * @return Expense
+     */
+    public function setProjectId(int $projectId): Expense
     {
         $this->projectId = $projectId;
         return $this;
     }
 
-    public function setInvoiceId(?int $invoiceId) : Expense
+    /**
+     * @param integer|null $invoiceId
+     * @return Expense
+     */
+    public function setInvoiceId(?int $invoiceId): Expense
     {
         $this->invoiceId = $invoiceId;
         return $this;
     }
 
-    public function setClientId(int $clientId) : Expense
+    /**
+     * @param integer $clientId
+     * @return Expense
+     */
+    public function setClientId(int $clientId): Expense
     {
         $this->clientId = $clientId;
         return $this;
     }
 
-    public function setProfileId(?int $profileId) : Expense
+    /**
+     * @param integer|null $profileId
+     * @return Expense
+     */
+    public function setProfileId(?int $profileId): Expense
     {
         $this->profileId = $profileId;
         return $this;
     }
 
-    public function setTransactionId(?string $transactionId) : Expense
+    /**
+     * @param string|null $transactionId
+     * @return Expense
+     */
+    public function setTransactionId(?string $transactionId): Expense
     {
         $this->transactionId = $transactionId;
         return $this;
     }
 
-    public function setMarkupPercent(string $markupPercent) : Expense
+    /**
+     * @param string $markupPercent
+     * @return Expense
+     */
+    public function setMarkupPercent(string $markupPercent): Expense
     {
         $this->markupPercent = $markupPercent;
         return $this;
     }
 
-    public function setTaxName1(?string $taxName1) : Expense
+    /**
+     * @param string|null $taxName1
+     * @return Expense
+     */
+    public function setTaxName1(?string $taxName1): Expense
     {
         $this->taxName1 = $taxName1;
         return $this;
     }
 
-    public function setTaxAmount1(?object $taxAmount1) : Expense
+    /**
+     * @param object|null $taxAmount1
+     * @return Expense
+     */
+    public function setTaxAmount1(?object $taxAmount1): Expense
     {
         $this->taxAmount1 = $taxAmount1;
         return $this;
     }
 
-    public function setTaxPercent1(?string $taxPercent1) : Expense
+    /**
+     * @param string|null $taxPercent1
+     * @return Expense
+     */
+    public function setTaxPercent1(?string $taxPercent1): Expense
     {
         $this->taxPercent1 = $taxPercent1;
         return $this;
     }
 
-    public function setTaxName2(?string $taxName2) : Expense
+    /**
+     * @param string|null $taxName2
+     * @return Expense
+     */
+    public function setTaxName2(?string $taxName2): Expense
     {
         $this->taxName2 = $taxName2;
         return $this;
     }
 
-    public function setTaxAmount2(?object $taxAmount2) : Expense
+    /**
+     * @param object|null $taxAmount2
+     * @return Expense
+     */
+    public function setTaxAmount2(?object $taxAmount2): Expense
     {
         $this->taxAmount2 = $taxAmount2;
         return $this;
     }
 
-    public function setTaxPercent2(?string $taxPercent2) : Expense
+    /**
+     * @param string|null $taxPercent2
+     * @return Expense
+     */
+    public function setTaxPercent2(?string $taxPercent2): Expense
     {
         $this->taxPercent2 = $taxPercent2;
         return $this;
     }
 
-    public function setAccountName(string $accountName) : Expense
+    /**
+     * @param string $accountName
+     * @return Expense
+     */
+    public function setAccountName(string $accountName): Expense
     {
         $this->accountName = $accountName;
         return $this;
     }
 
-    public function setIsDuplicate(bool $isDuplicate) : Expense
+    /**
+     * @param boolean $isDuplicate
+     * @return Expense
+     */
+    public function setIsDuplicate(bool $isDuplicate): Expense
     {
         $this->isDuplicate = $isDuplicate;
         return $this;
     }
 
-    public function setVisState(int $visState) : Expense
+    /**
+     * @param integer $visState
+     * @return Expense
+     */
+    public function setVisState(int $visState): Expense
     {
         $this->visState = $visState;
         return $this;
     }
 
-    public function setStatus(int $status) : Expense
+    /**
+     * @param integer $status
+     * @return Expense
+     */
+    public function setStatus(int $status): Expense
     {
         $this->status = $status;
         return $this;
     }
 
-    public function setBankName(string $bankName) : Expense
+    /**
+     * @param string $bankName
+     * @return Expense
+     */
+    public function setBankName(string $bankName): Expense
     {
         $this->bankName = $bankName;
         return $this;
     }
 
-    public function setUpdated(string $updated) : Expense
+    /**
+     * @param string $updated
+     * @return Expense
+     */
+    public function setUpdated(string $updated): Expense
     {
         $this->updated = $updated;
         return $this;
     }
 
-    public function setVendor(string $vendor) : Expense
+    /**
+     * @param string $vendor
+     * @return Expense
+     */
+    public function setVendor(string $vendor): Expense
     {
         $this->vendor = $vendor;
         return $this;
     }
 
-    public function setExtSystemId(int $extSystemId) : Expense
+    /**
+     * @param integer $extSystemId
+     * @return Expense
+     */
+    public function setExtSystemId(int $extSystemId): Expense
     {
         $this->extSystemId = $extSystemId;
         return $this;
     }
 
-    public function setStaffId(int $staffId) : Expense
+    /**
+     * @param integer $staffId
+     * @return Expense
+     */
+    public function setStaffId(int $staffId): Expense
     {
         $this->staffId = $staffId;
         return $this;
     }
 
-    public function setDate(string $date) : Expense
+    /**
+     * @param string $date
+     * @return Expense
+     */
+    public function setDate(string $date): Expense
     {
         $this->date = $date;
         return $this;
     }
 
-    public function setHasReceipt(bool $hasReceipt) : Expense
+    /**
+     * @param boolean $hasReceipt
+     * @return Expense
+     */
+    public function setHasReceipt(bool $hasReceipt): Expense
     {
         $this->hasReceipt = $hasReceipt;
         return $this;
     }
 
-    public function setAccountingSystemId(string $accountingSystemId) : Expense
+    /**
+     * @param string $accountingSystemId
+     * @return Expense
+     */
+    public function setAccountingSystemId(string $accountingSystemId): Expense
     {
         $this->accountingSystemId = $accountingSystemId;
         return $this;
     }
 
-    public function setBackgroundJobId(?int $backgroundJobId) : Expense
+    /**
+     * @param integer $backgroundJobId
+     * @return Expense
+     */
+    public function setBackgroundJobId(?int $backgroundJobId): Expense
     {
         $this->backgroundJobId = $backgroundJobId;
         return $this;
     }
 
-    public function setNotes(string $notes) : Expense
+    /**
+     * @param string $notes
+     * @return Expense
+     */
+    public function setNotes(string $notes): Expense
     {
         $this->notes = $notes;
         return $this;
     }
 
-    public function setExtInvoiceId(int $extInvoiceId) : Expense
+    /**
+     * @param integer $extInvoiceId
+     * @return Expense
+     */
+    public function setExtInvoiceId(int $extInvoiceId): Expense
     {
         $this->extInvoiceId = $extInvoiceId;
         return $this;
     }
 
-    public function setAmount(object $amount) : Expense
+    /**
+     * @param object $amount
+     * @return Expense
+     */
+    public function setAmount(object $amount): Expense
     {
         $this->amount = $amount;
         return $this;
     }
 
-    public function setCompoundedTax(bool $compoundedTax) : Expense
+    /**
+     * @param boolean $compoundedTax
+     * @return Expense
+     */
+    public function setCompoundedTax(bool $compoundedTax): Expense
     {
         $this->compoundedTax = $compoundedTax;
         return $this;
     }
 
-    public function setAccountId(?int $accountId) : Expense
+    /**
+     * @param integer $accountId
+     * @return Expense
+     */
+    public function setAccountId(?int $accountId): Expense
     {
         $this->accountId = $accountId;
         return $this;
     }
 
-    public function getId() : int
+    /**
+     * @return integer
+     */
+    public function getId(): int
     {
         return $this->id;
     }
 
-    public function getExpenseId() : int
+    /**
+     * @return integer
+     */
+    public function getExpenseId(): int
     {
         return $this->expenseId;
     }
 
-    public function getCategoryId() : int
+    /**
+     * @return integer
+     */
+    public function getCategoryId(): int
     {
         return $this->categoryId;
     }
 
-    public function getProjectId() : int
+    /**
+     * @return integer
+     */
+    public function getProjectId(): int
     {
         return $this->projectId;
     }
 
-    public function getInvoiceId() : int
+    /**
+     * @return integer
+     */
+    public function getInvoiceId(): int
     {
         return $this->invoiceId;
     }
 
-    public function getClientId() : int
+    /**
+     * @return integer
+     */
+    public function getClientId(): int
     {
         return $this->clientId;
     }
 
-    public function getProfileId() : int
+    /**
+     * @return integer
+     */
+    public function getProfileId(): int
     {
         return $this->profileId;
     }
 
-    public function getTransactionId() : string
+    /**
+     * @return string
+     */
+    public function getTransactionId(): string
     {
         return $this->transactionId;
     }
 
-    public function getMarkupPercent() : string
+    /**
+     * @return string
+     */
+    public function getMarkupPercent(): string
     {
         return $this->markupPercent;
     }
 
-    public function getTaxName1() : string
+    /**
+     * @return string
+     */
+    public function getTaxName1(): string
     {
         return $this->taxName1;
     }
 
-    public function getTaxAmount1() : object
+    /**
+     * @return object
+     */
+    public function getTaxAmount1(): object
     {
         return $this->taxAmount1;
     }
 
-    public function getTaxPercent1() : string
+    /**
+     * @return string
+     */
+    public function getTaxPercent1(): string
     {
         return $this->taxPercent1;
     }
 
-    public function getTaxName2() : string
+    /**
+     * @return string
+     */
+    public function getTaxName2(): string
     {
         return $this->taxName2;
     }
 
-    public function getTaxAmount2() : object
+    /**
+     * @return object
+     */
+    public function getTaxAmount2(): object
     {
         return $this->taxAmount2;
     }
 
-    public function getTaxPercent2() : string
+    /**
+     * @return string
+     */
+    public function getTaxPercent2(): string
     {
         return $this->taxPercent2;
     }
 
-    public function getAccountName() : string
+    /**
+     * @return string
+     */
+    public function getAccountName(): string
     {
         return $this->accountName;
     }
 
-    public function getIsDuplicate() : bool
+    /**
+     * @return boolean
+     */
+    public function getIsDuplicate(): bool
     {
         return $this->isDuplicate;
     }
 
-    public function getVisState() : int
+    /**
+     * @return integer
+     */
+    public function getVisState(): int
     {
         return $this->visState;
     }
 
-    public function getStatus() : int
+    /**
+     * @return integer
+     */
+    public function getStatus(): int
     {
         return $this->status;
     }
 
-    public function getBankName() : string
+    /**
+     * @return string
+     */
+    public function getBankName(): string
     {
         return $this->bankName;
     }
 
-    public function getUpdated() : string
+    /**
+     * @return string
+     */
+    public function getUpdated(): string
     {
         return $this->updated;
     }
 
-    public function getVendor() : string
+    /**
+     * @return string
+     */
+    public function getVendor(): string
     {
         return $this->vendor;
     }
 
-    public function getExtSystemId() : int
+    /**
+     * @return integer
+     */
+    public function getExtSystemId(): int
     {
         return $this->extSystemId;
     }
 
-    public function getStaffId() : int
+    /**
+     * @return integer
+     */
+    public function getStaffId(): int
     {
         return $this->staffId;
     }
 
-    public function getDate() : string
+    /**
+     * @return string
+     */
+    public function getDate(): string
     {
         return $this->date;
     }
 
-    public function getHasReceipt() : bool
+    /**
+     * @return boolean
+     */
+    public function getHasReceipt(): bool
     {
         return $this->hasReceipt;
     }
 
-    public function getAccountingSystemId() : string
+    /**
+     * @return string
+     */
+    public function getAccountingSystemId(): string
     {
         return $this->accountingSystemId;
     }
 
-    public function getBackgroundJobId() : int
+    /**
+     * @return integer
+     */
+    public function getBackgroundJobId(): int
     {
         return $this->backgroundJobId;
     }
 
-    public function getNotes() : string
+    /**
+     * @return string
+     */
+    public function getNotes(): string
     {
         return $this->notes;
     }
 
-    public function getExtInvoiceId() : int
+    /**
+     * @return integer
+     */
+    public function getExtInvoiceId(): int
     {
         return $this->extInvoiceId;
     }
 
-    public function getAmount() : object
+    /**
+     * @return object
+     */
+    public function getAmount(): object
     {
         return $this->amount;
     }
 
-    public function getCompoundedTax() : bool
+    /**
+     * @return boolean
+     */
+    public function getCompoundedTax(): bool
     {
         return $this->compoundedTax;
     }
 
-    public function getAccountId() : int
+    /**
+     * @return integer
+     */
+    public function getAccountId(): int
     {
         return $this->accountId;
     }
 
-    public function toArray() : array
+    /**
+     * @return array<mixed>
+     */
+    public function toArray(): array
     {
         return [
             'id' => $this->id,
@@ -586,7 +822,11 @@ class Expense
         ];
     }
 
-    public function fromObject(object $data) : Expense
+    /**
+     * @param object $data
+     * @return Expense
+     */
+    public function fromObject(object $data): Expense
     {
         return $this->setId($data->id)
             ->setExpenseId($data->expenseid)
@@ -627,7 +867,7 @@ class Expense
      * @param string $id
      * @return Expense
      */
-    public function getById(string $id) : Expense
+    public function getById(string $id): Expense
     {
         return $this->fromObject($this->conn->get('expenses/expenses/' . $id)->expense);
     }
@@ -636,24 +876,24 @@ class Expense
     /**
      * @return Expense
      */
-    public function create() : Expense
+    public function create(): Expense
     {
         return $this->fromObject($this->conn->post('expenses/expenses', [
-            "expense" => array_filter($this->toArray(), function($key) {
+            "expense" => array_filter($this->toArray(), function ($key) {
                 return !in_array($key, ['updated', 'accounting_systemid']);
             }, ARRAY_FILTER_USE_KEY)
         ], true)->expense);
     }
-    
+
 
     /**
      * @param int|null $id
      * @return Expense
      */
-    public function update(?int $id = null) : Expense
+    public function update(?int $id = null): Expense
     {
         return $this->fromObject($this->conn->put('expenses/expenses/' . strval($id ?? $this->getId()), [
-            "expense" => array_filter(array_filter($this->toArray(), function($key) {
+            "expense" => array_filter(array_filter($this->toArray(), function ($key) {
                 return !in_array($key, ['updated', 'accounting_systemid']);
             }, ARRAY_FILTER_USE_KEY))
         ], true)->expense);
@@ -663,7 +903,7 @@ class Expense
      * @param int|null $id
      * @return Expense
      */
-    public function delete(?int $id = null) : Expense
+    public function delete(?int $id = null): Expense
     {
         return $this->fromObject($this->conn->put('expenses/expenses/' . strval($id  ?? $this->getId()), [
             "expense" => [

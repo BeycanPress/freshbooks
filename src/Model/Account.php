@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BeycanPress\FreshBooks\Model;
 
 class Account
@@ -7,13 +9,13 @@ class Account
     /**
      * @var string
      */
-    private $id;
+    private string $id;
 
     /**
      * @var string
      */
-    private $name;
-    
+    private string $name;
+
     /**
      * Account constructor.
      * @param object|null $data
@@ -28,7 +30,7 @@ class Account
     /**
      * @return string
      */
-    public function getId() : string
+    public function getId(): string
     {
         return $this->id;
     }
@@ -36,7 +38,7 @@ class Account
     /**
      * @return string
      */
-    public function getName() : string
+    public function getName(): string
     {
         return $this->name;
     }
@@ -45,7 +47,7 @@ class Account
      * @param string $id
      * @return Account
      */
-    public function setId(string $id) : Account
+    public function setId(string $id): Account
     {
         $this->id = $id;
         return $this;
@@ -55,7 +57,7 @@ class Account
      * @param string $name
      * @return Account
      */
-    public function setName(string $name) : Account
+    public function setName(string $name): Account
     {
         $this->name = $name;
         return $this;
@@ -64,15 +66,15 @@ class Account
     /**
      * @return string
      */
-    public function getAccountUrl() : string
+    public function getAccountUrl(): string
     {
         return "accounting/account/$this->id/";
     }
 
     /**
-     * @return array
+     * @return array<string,string>
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         return [
             'account_id' => $this->getId(),
@@ -84,7 +86,7 @@ class Account
      * @param object $data
      * @return Account
      */
-    public function fromObject(object $data) : Account
+    public function fromObject(object $data): Account
     {
         $this->setId($data->account_id);
         $this->setName($data->name);

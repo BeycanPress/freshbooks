@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BeycanPress\FreshBooks\Model;
 
 class InvoiceLine
@@ -7,69 +9,69 @@ class InvoiceLine
     /**
      * @var int
      */
-    private $invoiceId;
+    private int $invoiceId;
 
     /**
      * @var string
      */
-    private $name;
+    private string $name;
 
     /**
      * @var int
      */
-    private $quantity;
+    private int $quantity;
 
     /**
      * @var string|null
      */
-    private $type;
-    
+    private ?string $type = null;
+
     /**
      * @var string|null
      */
-    private $description;
+    private ?string $description = null;
 
     /**
      * @var int|null
      */
-    private $expenseId;
+    private ?int $expenseId = null;
 
     /**
      * @var string|null
      */
-    private $taxName1;
+    private ?string $taxName1 = null;
 
     /**
      * @var float|null
      */
-    private $taxAmount1;
+    private ?float $taxAmount1 = null;
 
     /**
      * @var string|null
      */
-    private $taxName2;
+    private ?string $taxName2 = null;
 
     /**
      * @var float|null
      */
-    private $taxAmount2;
+    private ?float $taxAmount2 = null;
 
     /**
      * @var object
      */
-    private $unitCost;
+    private object $unitCost;
 
     /**
      * @var object
      */
-    private $amount;
-    
+    private object $amount;
+
 
     /**
      * @param int $invoiceId
      * @return InvoiceLine
      */
-    public function setInvoiceId(int $invoiceId) : InvoiceLine
+    public function setInvoiceId(int $invoiceId): InvoiceLine
     {
         $this->invoiceId = $invoiceId;
         return $this;
@@ -79,7 +81,7 @@ class InvoiceLine
      * @param string $name
      * @return InvoiceLine
      */
-    public function setName(string $name) : InvoiceLine
+    public function setName(string $name): InvoiceLine
     {
         $this->name = $name;
         return $this;
@@ -89,7 +91,7 @@ class InvoiceLine
      * @param int $quantity
      * @return InvoiceLine
      */
-    public function setQuantity(int $quantity) : InvoiceLine
+    public function setQuantity(int $quantity): InvoiceLine
     {
         $this->quantity = $quantity;
         return $this;
@@ -99,7 +101,7 @@ class InvoiceLine
      * @param string|null $type
      * @return InvoiceLine
      */
-    public function setType(?string $type) : InvoiceLine
+    public function setType(?string $type): InvoiceLine
     {
         $this->type = $type;
         return $this;
@@ -109,7 +111,7 @@ class InvoiceLine
      * @param string|null $description
      * @return InvoiceLine
      */
-    public function setDescription(?string $description) : InvoiceLine
+    public function setDescription(?string $description): InvoiceLine
     {
         $this->description = $description;
         return $this;
@@ -119,7 +121,7 @@ class InvoiceLine
      * @param int|null $expenseId
      * @return InvoiceLine
      */
-    public function setExpenseId(?int $expenseId) : InvoiceLine
+    public function setExpenseId(?int $expenseId): InvoiceLine
     {
         $this->expenseId = $expenseId;
         return $this;
@@ -130,7 +132,7 @@ class InvoiceLine
      * @param string|null $taxName1
      * @return InvoiceLine
      */
-    public function setTaxName1(?string $taxName1) : InvoiceLine
+    public function setTaxName1(?string $taxName1): InvoiceLine
     {
         $this->taxName1 = $taxName1;
         return $this;
@@ -140,7 +142,7 @@ class InvoiceLine
      * @param float|null $taxAmount1
      * @return InvoiceLine
      */
-    public function setTaxAmount1(?float $taxAmount1) : InvoiceLine 
+    public function setTaxAmount1(?float $taxAmount1): InvoiceLine
     {
         $this->taxAmount1 = $taxAmount1;
         return $this;
@@ -150,7 +152,7 @@ class InvoiceLine
      * @param string|null $taxName2
      * @return InvoiceLine
      */
-    public function setTaxName2(?string $taxName2) : InvoiceLine
+    public function setTaxName2(?string $taxName2): InvoiceLine
     {
         $this->taxName2 = $taxName2;
         return $this;
@@ -160,7 +162,7 @@ class InvoiceLine
      * @param float|null $taxAmount2
      * @return InvoiceLine
      */
-    public function setTaxAmount2(?float $taxAmount2) : InvoiceLine
+    public function setTaxAmount2(?float $taxAmount2): InvoiceLine
     {
         $this->taxAmount2 = $taxAmount2;
         return $this;
@@ -170,17 +172,17 @@ class InvoiceLine
      * @param object $unitCost
      * @return InvoiceLine
      */
-    private function setUnitCost(object $unitCost) : InvoiceLine
+    private function setUnitCost(object $unitCost): InvoiceLine
     {
         $this->unitCost = $unitCost;
         return $this;
     }
-    
+
     /**
      * @param object $amount
      * @return InvoiceLine
      */
-    public function setAmount(object $amount) : InvoiceLine
+    public function setAmount(object $amount): InvoiceLine
     {
         $amount->amount = (string) $amount->amount;
         $this->setUnitCost($amount); // amount and unitCost are the same (for now)
@@ -191,7 +193,7 @@ class InvoiceLine
     /**
      * @return int
      */
-    public function getInvoiceId() : int
+    public function getInvoiceId(): int
     {
         return $this->invoiceId;
     }
@@ -199,15 +201,15 @@ class InvoiceLine
     /**
      * @return string
      */
-    public function getName() : string
-    {   
+    public function getName(): string
+    {
         return $this->name;
     }
 
     /**
      * @return int
      */
-    public function getQuantity() : int
+    public function getQuantity(): int
     {
         return $this->quantity;
     }
@@ -215,7 +217,7 @@ class InvoiceLine
     /**
      * @return string|null
      */
-    public function getType() : ?string
+    public function getType(): ?string
     {
         return $this->type;
     }
@@ -223,7 +225,7 @@ class InvoiceLine
     /**
      * @return string|null
      */
-    public function getDescription() : ?string
+    public function getDescription(): ?string
     {
         return $this->description;
     }
@@ -231,7 +233,7 @@ class InvoiceLine
     /**
      * @return int|null
      */
-    public function getExpenseId() : ?int
+    public function getExpenseId(): ?int
     {
         return $this->expenseId;
     }
@@ -239,7 +241,7 @@ class InvoiceLine
     /**
      * @return string|null
      */
-    public function getTaxName1() : ?string
+    public function getTaxName1(): ?string
     {
         return $this->taxName1;
     }
@@ -247,7 +249,7 @@ class InvoiceLine
     /**
      * @return float|null
      */
-    public function getTaxAmount1() : ?float
+    public function getTaxAmount1(): ?float
     {
         return $this->taxAmount1;
     }
@@ -255,7 +257,7 @@ class InvoiceLine
     /**
      * @return string|null
      */
-    public function getTaxName2() : ?string
+    public function getTaxName2(): ?string
     {
         return $this->taxName2;
     }
@@ -263,7 +265,7 @@ class InvoiceLine
     /**
      * @return float|null
      */
-    public function getTaxAmount2() : ?float
+    public function getTaxAmount2(): ?float
     {
         return $this->taxAmount2;
     }
@@ -271,7 +273,7 @@ class InvoiceLine
     /**
      * @return object
      */
-    public function getUnitCost() : object
+    public function getUnitCost(): object
     {
         return $this->unitCost;
     }
@@ -279,15 +281,15 @@ class InvoiceLine
     /**
      * @return object
      */
-    public function getAmount() : object
+    public function getAmount(): object
     {
         return $this->amount;
     }
 
     /**
-     * @return array
+     * @return array<string,mixed>
      */
-    public function toArray() : array
+    public function toArray(): array
     {
         return array_filter([
             'invoiceid' => $this->invoiceId,
@@ -305,12 +307,12 @@ class InvoiceLine
         ]);
     }
 
-    
+
     /**
-     * @param array $data
+     * @param array<string,mixed> $data
      * @return InvoiceLine
      */
-    public function fromArray(array $data) : InvoiceLine
+    public function fromArray(array $data): InvoiceLine
     {
         return $this->setInvoiceId($data['invoiceid'])
             ->setName($data['name'])
@@ -324,5 +326,4 @@ class InvoiceLine
             ->setTaxAmount2($data['taxAmount2'])
             ->setAmount($data['amount']);
     }
-    
 }

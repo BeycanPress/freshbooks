@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace BeycanPress\FreshBooks\Model;
 
 use BeycanPress\FreshBooks\Helpers;
@@ -12,97 +14,97 @@ class Invoice
     /**
      * @var int
      */
-    private $id;
+    private int $id;
 
     /**
      * @var string
      */
-    private $invoiceNumber;
+    private string $invoiceNumber;
 
     /**
      * @var int
      */
-    private $customerId;
+    private int $customerId;
 
     /**
      * @var string
      */
-    private $firstName;
-    
-    /**
-     * @var string
-     */
-    private $lastName;
-    
-    /**
-     * @var string
-     */
-    private $address;
+    private string $firstName;
 
     /**
      * @var string
      */
-    private $street;
-    
+    private string $lastName;
+
+    /**
+     * @var string
+     */
+    private string $address;
+
+    /**
+     * @var string
+     */
+    private string $street;
+
     /**
      * @var string|null
      */
-    private $street2;
+    private ?string $street2 = null;
 
     /**
      * @var string
      */
-    private $city;
+    private string $city;
 
     /**
      * @var string
      */
-    private $province;
+    private string $province;
 
     /**
      * @var string
      */
-    private $postalCode;
+    private string $postalCode;
 
     /**
      * @var string
      */
-    private $country;
+    private string $country;
 
     /**
      * @var object
      */
-    private $amount;
+    private object $amount;
 
     /**
      * @var string
      */
-    private $currencyCode;
+    private string $currencyCode;
 
     /**
      * @var string
      */
-    private $organization;
-    
-    /**
-     * @var string
-     */
-    private $currentOrganization;
+    private string $organization;
 
     /**
      * @var string
      */
-    private $notes;
+    private string $currentOrganization;
 
     /**
      * @var string
      */
-    private $status;
-    
+    private string $notes;
+
     /**
-     * @var array
+     * @var string
      */
-    private $statuses = [
+    private string $status;
+
+    /**
+     * @var array<string,int>
+     */
+    private array $statuses = [
         'disputed' => 0,
         'draft' => 1,
         'sent' => 2,
@@ -117,217 +119,217 @@ class Invoice
     /**
      * @var int
      */
-    private $ownerId;
+    private int $ownerId;
 
     /**
      * @var string|null
      */
-    private $depositPercentage;
+    private ?string $depositPercentage = null;
 
     /**
      * @var string
      */
-    private $createDate;
+    private string $createDate;
 
     /**
      * @var object
      */
-    private $outstanding;
+    private object $outstanding;
 
     /**
      * @var string
      */
-    private $paymentStatus;
+    private string $paymentStatus;
 
     /**
      * @var string
      */
-    private $vatName;
+    private string $vatName;
 
     /**
      * @var string
      */
-    private $vatNumber;
+    private string $vatNumber;
 
     /**
      * @var bool
      */
-    private $gmail;
+    private bool $gmail;
 
     /**
      * @var string
      */
-    private $v3Status;
+    private string $v3Status;
 
     /**
      * @var int
      */
-    private $parent;
+    private int $parent;
 
     /**
      * @var string|null
      */
-    private $disputeStatus;
+    private ?string $disputeStatus = null;
 
     /**
      * @var string
      */
-    private $depositStatus;
+    private string $depositStatus;
 
     /**
      * @var int
      */
-    private $estimateId;
+    private int $estimateId;
 
     /**
      * @var int
      */
-    private $extArchive;
+    private int $extArchive;
 
     /**
      * @var string
      */
-    private $template;
+    private string $template;
 
     /**
      * @var int
      */
-    private $basecampId;
+    private int $basecampId;
 
     /**
      * @var string|null
      */
-    private $generationDate;
+    private ?string $generationDate = null;
 
     /**
      * @var bool
      */
-    private $showAttachments;
+    private bool $showAttachments;
 
     /**
      * @var int
      */
-    private $visState;
+    private int $visState;
 
     /**
      * @var string
      */
-    private $dueDate;
+    private string $dueDate;
 
     /**
      * @var string
      */
-    private $updated;
+    private string $updated;
 
     /**
      * @var string|null
      */
-    private $terms;
+    private ?string $terms = null;
 
     /**
      * @var string
      */
-    private $description;
+    private string $description;
 
     /**
      * @var string|null
      */
-    private $discountDescription;
+    private ?string $discountDescription = null;
 
     /**
      * @var string|null
      */
-    private $lastOrderStatus;
+    private ?string $lastOrderStatus = null;
 
     /**
      * @var string|null
      */
-    private $depositAmount;
+    private ?string $depositAmount = null;
 
     /**
      * @var object
      */
-    private $paid;
+    private object $paid;
 
     /**
      * @var object
      */
-    private $discountTotal;
+    private object $discountTotal;
 
     /**
      * @var int
      */
-    private $discountValue;
+    private int $discountValue;
 
     /**
      * @var string
      */
-    private $accountingSystemId;
+    private string $accountingSystemId;
 
     /**
      * @var int
      */
-    private $dueOffsetDays;
+    private int $dueOffsetDays;
 
     /**
      * @var string
      */
-    private $language;
+    private string $language;
 
     /**
      * @var string|null
      */
-    private $poNumber;
+    private ?string $poNumber = null;
 
     /**
      * @var string
      */
-    private $displayStatus;
+    private string $displayStatus;
 
     /**
      * @var string|null
      */
-    private $datePaid;
+    private ?string $datePaid = null;
 
     /**
      * @var int
      */
-    private $sentId;
+    private int $sentId;
 
     /**
      * @var string|null
      */
-    private $autobillStatus;
+    private ?string $autobillStatus = null;
 
     /**
      * @var string|null
      */
-    private $returnUri;
+    private ?string $returnUri = null;
 
     /**
      * @var string
      */
-    private $createdAt;
+    private string $createdAt;
 
     /**
      * @var bool
      */
-    private $autoBill;
+    private bool $autoBill;
 
     /**
      * @var string
      */
-    private $accountId;
+    private string $accountId;
 
     /**
-     * @var array
+     * @var array<InvoiceLine>
      */
-    private $lines;
+    private array $lines;
 
     /**
      * @var Connection
      */
-    private $conn;
+    private Connection $conn;
 
     /**
      * @param Connection $conn
@@ -935,17 +937,17 @@ class Invoice
      * @param InvoiceLine $line
      * @return Invoice
      */
-    public function addLine(InvoiceLine $line) : Invoice
+    public function addLine(InvoiceLine $line): Invoice
     {
         $this->lines[] = $line;
         return $this;
     }
 
     /**
-     * @param array $lines
+     * @param array<InvoiceLine> $lines
      * @return Invoice
      */
-    public function setLines(array $lines) : Invoice
+    public function setLines(array $lines): Invoice
     {
         foreach ($lines as $line) {
             $this->addLine($line);
@@ -1024,7 +1026,7 @@ class Invoice
     {
         return $this->city;
     }
-    
+
     /**
      * @return string
      */
@@ -1098,7 +1100,7 @@ class Invoice
     }
 
     /**
-     * @return array
+     * @return array<string,int>
      */
     public function getStatuses(): array
     {
@@ -1434,9 +1436,9 @@ class Invoice
     }
 
     /**
-     * @return array
+     * @return array<InvoiceLine>
      */
-    public function getLines() : array
+    public function getLines(): array
     {
         return $this->lines;
     }
@@ -1444,15 +1446,15 @@ class Invoice
     /**
      * @return object
      */
-    public function toObject() : object
+    public function toObject(): object
     {
         return (object) $this->toArray();
     }
-    
+
     /**
-     * @return array
+     * @return array<string,mixed>
      */
-    public function toArray() : array 
+    public function toArray(): array
     {
         return array_filter([
             'id' => $this->id,
@@ -1514,17 +1516,17 @@ class Invoice
             'created_at' => $this->createdAt,
             'auto_bill' => $this->autoBill,
             'accountid' => $this->accountId,
-            'lines' => is_array($this->lines) ? array_map(function($val) {
+            'lines' => is_array($this->lines) ? array_map(function ($val) {
                 return $val->toArray();
             }, $this->lines) : $this->lines
         ]);
     }
 
     /**
-     * @param array $data
+     * @param array<mixed> $data
      * @return Invoice
      */
-    public function fromArray(array $data) : Invoice
+    public function fromArray(array $data): Invoice
     {
         return $this->fromObject($this->arrayToObject($data));
     }
@@ -1533,7 +1535,7 @@ class Invoice
      * @param object $data
      * @return Invoice
      */
-    public function fromObject(object $data) : Invoice
+    public function fromObject(object $data): Invoice
     {
         $this->setId($data->id);
         $this->setAccountId($data->accountid);
@@ -1603,7 +1605,7 @@ class Invoice
      * @param string $id
      * @return Invoice
      */
-    public function getById(string $id) : Invoice
+    public function getById(string $id): Invoice
     {
         return $this->fromObject($this->conn->get('invoices/invoices/' . $id)->invoice);
     }
@@ -1611,7 +1613,7 @@ class Invoice
     /**
      * @return Invoice
      */
-    public function create() : Invoice
+    public function create(): Invoice
     {
         return $this->fromObject($this->conn->post('invoices/invoices', [
             "invoice" => $this->toArray()
@@ -1622,19 +1624,19 @@ class Invoice
      * @param int|null $id
      * @return Invoice
      */
-    public function update(?int $id = null) : Invoice
+    public function update(?int $id = null): Invoice
     {
         return $this->fromObject($this->conn->put('invoices/invoices/' . strval($id ?? $this->getId()), [
             "invoice" => $this->toArray()
         ], true)->invoice);
     }
 
-    
+
     /**
      * @param int|null $id
      * @return Invoice
      */
-    public function delete(?int $id = null) : Invoice
+    public function delete(?int $id = null): Invoice
     {
         return $this->fromObject($this->conn->put('invoices/invoices/' . strval($id  ?? $this->getId()), [
             "invoice" => [
@@ -1647,7 +1649,7 @@ class Invoice
      * @param int|null $id
      * @return Invoice
      */
-    public function markAsSent(?int $id = null) : Invoice
+    public function markAsSent(?int $id = null): Invoice
     {
         return $this->fromObject($this->conn->put('invoices/invoices/' . strval($id ?? $this->getId()), [
             "invoice" => [
@@ -1657,15 +1659,20 @@ class Invoice
     }
 
     /**
-     * @param array|string $email
+     * @param array<string>|string $email
      * @param int|null $id
      * @param string|null $subject
      * @param string|null $body
      * @param bool $includePdf
      * @return Invoice
      */
-    public function sendToEMail($email, ?int $id = null, ?string $subject = null, ?string $body = null, bool $includePdf = false) : Invoice
-    {
+    public function sendToEMail(
+        array|string $email,
+        ?int $id = null,
+        ?string $subject = null,
+        ?string $body = null,
+        bool $includePdf = false
+    ): Invoice {
         if (!is_array($email)) {
             if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
                 throw new \InvalidArgumentException("Email is not valid");
@@ -1677,15 +1684,13 @@ class Invoice
         return $this->fromObject($this->conn->put('invoices/invoices/' . strval($id ?? $this->getId()), [
             "invoice" => [
                 "action_email" => true,
-                "email_recipients" => $email,	
+                "email_recipients" => $email,
                 "email_include_pdf" => $includePdf,
                 "invoice_customized_email" => [
-                    "subject" => $subject ?? $this->conn->getAccount()->getName() . " sent you an invoice (".$this->getInvoiceNumber().")",
-                    "body" => $body ?? "The invoice of the product or products you have purchased below has been sent by ".$this->conn->getAccount()->getName()." via FreshBooks.",
+                    "subject" => $subject ?? $this->conn->getAccount()->getName() . " sent you an invoice (" . $this->getInvoiceNumber() . ")", // phpcs:ignore
+                    "body" => $body ?? "The invoice of the product or products you have purchased below has been sent by " . $this->conn->getAccount()->getName() . " via FreshBooks.", // phpcs:ignore
                 ]
             ]
         ], true)->invoice);
     }
 }
-
-
