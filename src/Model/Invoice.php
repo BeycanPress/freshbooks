@@ -14,37 +14,37 @@ class Invoice
     /**
      * @var int
      */
-    private int $id;
+    private int $id = 0;
 
     /**
      * @var string
      */
-    private string $invoiceNumber;
+    private string $invoiceNumber = '';
 
     /**
      * @var int
      */
-    private int $customerId;
+    private int $customerId = 0;
 
     /**
      * @var string
      */
-    private string $firstName;
+    private string $firstName = '';
 
     /**
      * @var string
      */
-    private string $lastName;
+    private string $lastName = '';
 
     /**
      * @var string
      */
-    private string $address;
+    private string $address = '';
 
     /**
      * @var string
      */
-    private string $street;
+    private string $street = '';
 
     /**
      * @var string|null
@@ -54,52 +54,52 @@ class Invoice
     /**
      * @var string
      */
-    private string $city;
+    private string $city = '';
 
     /**
      * @var string
      */
-    private string $province;
+    private string $province = '';
 
     /**
      * @var string
      */
-    private string $postalCode;
+    private string $postalCode = '';
 
     /**
      * @var string
      */
-    private string $country;
+    private string $country = '';
 
     /**
-     * @var object
+     * @var object|null
      */
-    private object $amount;
-
-    /**
-     * @var string
-     */
-    private string $currencyCode;
+    private ?object $amount = null;
 
     /**
      * @var string
      */
-    private string $organization;
+    private string $currencyCode = '';
 
     /**
      * @var string
      */
-    private string $currentOrganization;
+    private string $organization = '';
 
     /**
      * @var string
      */
-    private string $notes;
+    private string $currentOrganization = '';
 
     /**
      * @var string
      */
-    private string $status;
+    private string $notes = '';
+
+    /**
+     * @var string
+     */
+    private string $status = '';
 
     /**
      * @var array<string,int>
@@ -119,7 +119,7 @@ class Invoice
     /**
      * @var int
      */
-    private int $ownerId;
+    private int $ownerId = 0;
 
     /**
      * @var string|null
@@ -129,42 +129,42 @@ class Invoice
     /**
      * @var string
      */
-    private string $createDate;
+    private string $createDate = '';
 
     /**
-     * @var object
+     * @var object|null
      */
-    private object $outstanding;
-
-    /**
-     * @var string
-     */
-    private string $paymentStatus;
+    private ?object $outstanding = null;
 
     /**
      * @var string
      */
-    private string $vatName;
+    private string $paymentStatus = '';
 
     /**
      * @var string
      */
-    private string $vatNumber;
+    private string $vatName = '';
+
+    /**
+     * @var string
+     */
+    private string $vatNumber = '';
 
     /**
      * @var bool
      */
-    private bool $gmail;
+    private bool $gmail = false;
 
     /**
      * @var string
      */
-    private string $v3Status;
+    private string $v3Status = '';
 
     /**
      * @var int
      */
-    private int $parent;
+    private int $parent = 0;
 
     /**
      * @var string|null
@@ -174,27 +174,27 @@ class Invoice
     /**
      * @var string
      */
-    private string $depositStatus;
+    private string $depositStatus = '';
 
     /**
      * @var int
      */
-    private int $estimateId;
+    private int $estimateId = 0;
 
     /**
      * @var int
      */
-    private int $extArchive;
+    private int $extArchive = 0;
 
     /**
      * @var string
      */
-    private string $template;
+    private string $template = '';
 
     /**
      * @var int
      */
-    private int $basecampId;
+    private int $basecampId = 0;
 
     /**
      * @var string|null
@@ -204,22 +204,22 @@ class Invoice
     /**
      * @var bool
      */
-    private bool $showAttachments;
+    private bool $showAttachments = false;
 
     /**
      * @var int
      */
-    private int $visState;
+    private int $visState = 0;
 
     /**
      * @var string
      */
-    private string $dueDate;
+    private string $dueDate = '';
 
     /**
      * @var string
      */
-    private string $updated;
+    private string $updated = '';
 
     /**
      * @var string|null
@@ -229,7 +229,7 @@ class Invoice
     /**
      * @var string
      */
-    private string $description;
+    private string $description = '';
 
     /**
      * @var string|null
@@ -247,34 +247,34 @@ class Invoice
     private ?string $depositAmount = null;
 
     /**
-     * @var object
+     * @var object|null
      */
-    private object $paid;
+    private ?object $paid = null;
 
     /**
-     * @var object
+     * @var object|null
      */
-    private object $discountTotal;
+    private ?object $discountTotal = null;
 
     /**
-     * @var int
+     * @var float
      */
-    private int $discountValue;
-
-    /**
-     * @var string
-     */
-    private string $accountingSystemId;
-
-    /**
-     * @var int
-     */
-    private int $dueOffsetDays;
+    private float $discountValue = 0;
 
     /**
      * @var string
      */
-    private string $language;
+    private string $accountingSystemId = '';
+
+    /**
+     * @var int
+     */
+    private int $dueOffsetDays = 0;
+
+    /**
+     * @var string
+     */
+    private string $language = '';
 
     /**
      * @var string|null
@@ -284,7 +284,7 @@ class Invoice
     /**
      * @var string
      */
-    private string $displayStatus;
+    private string $displayStatus = '';
 
     /**
      * @var string|null
@@ -294,7 +294,7 @@ class Invoice
     /**
      * @var int
      */
-    private int $sentId;
+    private int $sentId = 0;
 
     /**
      * @var string|null
@@ -309,17 +309,17 @@ class Invoice
     /**
      * @var string
      */
-    private string $createdAt;
+    private string $createdAt = '';
 
     /**
      * @var bool
      */
-    private bool $autoBill;
+    private bool $autoBill = false;
 
     /**
      * @var string
      */
-    private string $accountId;
+    private string $accountId = '';
 
     /**
      * @var array<InvoiceLine>
@@ -804,10 +804,10 @@ class Invoice
     }
 
     /**
-     * @param int $discountValue
+     * @param float $discountValue
      * @return Invoice
      */
-    public function setDiscountValue(int $discountValue): Invoice
+    public function setDiscountValue(float $discountValue): Invoice
     {
         $this->discountValue = $discountValue;
         return $this;
@@ -1052,9 +1052,9 @@ class Invoice
     }
 
     /**
-     * @return object
+     * @return object|null
      */
-    public function getAmount(): object
+    public function getAmount(): ?object
     {
         return $this->amount;
     }
@@ -1132,9 +1132,9 @@ class Invoice
     }
 
     /**
-     * @return object
+     * @return object|null
      */
-    public function getOutstanding(): object
+    public function getOutstanding(): ?object
     {
         return $this->outstanding;
     }
@@ -1316,25 +1316,25 @@ class Invoice
     }
 
     /**
-     * @return object
+     * @return object|null
      */
-    public function getPaid(): object
+    public function getPaid(): ?object
     {
         return $this->paid;
     }
 
     /**
-     * @return object
+     * @return object|null
      */
-    public function getDiscountTotal(): object
+    public function getDiscountTotal(): ?object
     {
         return $this->discountTotal;
     }
 
     /**
-     * @return int
+     * @return float
      */
-    public function getDiscountValue(): int
+    public function getDiscountValue(): float
     {
         return $this->discountValue;
     }
@@ -1558,7 +1558,7 @@ class Invoice
         $this->setDepositStatus($data->deposit_status);
         $this->setDiscountDescription($data->discount_description);
         $this->setDiscountTotal($data->discount_total);
-        $this->setDiscountValue($data->discount_value);
+        $this->setDiscountValue(floatval($data->discount_value));
         $this->setDisplayStatus($data->display_status);
         $this->setDisputeStatus($data->dispute_status);
         $this->setDueDate($data->due_date);
@@ -1594,8 +1594,10 @@ class Invoice
         $this->setVatNumber($data->vat_number);
         $this->setVisState($data->vis_state);
 
-        foreach ($data->lines as $value) {
-            $this->addLine((new InvoiceLine())->fromArray($value));
+        if (isset($data->lines)) {
+            foreach ($data->lines as $value) {
+                $this->addLine((new InvoiceLine())->fromArray($value));
+            }
         }
 
         return $this;

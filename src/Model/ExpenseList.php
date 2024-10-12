@@ -18,8 +18,8 @@ class ExpenseList
      */
     public function __construct(Connection $conn)
     {
-        foreach ($conn->get('expenses/expenses') as $value) {
-            $this->list[] = (new Expense($conn))->fromObject($value);
+        foreach ($conn->get('expenses/expenses')->expenses as $value) {
+            $this->list[] = (new Expense($conn))->fromObject((object) $value);
         }
     }
 

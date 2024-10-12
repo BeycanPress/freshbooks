@@ -11,27 +11,27 @@ class Payment
     /**
      * @var int
      */
-    private int $id;
+    private int $id = 0;
 
     /**
      * @var int
      */
-    private int $invoiceId;
+    private int $invoiceId = 0;
 
     /**
      * @var int
      */
-    private int $clientId;
+    private int $clientId = 0;
 
     /**
-     * @var object
+     * @var object|null
      */
-    private object $amount;
+    private ?object $amount = null;
 
     /**
      * @var string
      */
-    private string $accountingSystemId;
+    private string $accountingSystemId = '';
 
     /**
      * @var int|null
@@ -46,12 +46,12 @@ class Payment
     /**
      * @var string
      */
-    private string $date;
+    private string $date = '';
 
     /**
      * @var bool
      */
-    private bool $fromCredit;
+    private bool $fromCredit = false;
 
     /**
      * @var string|null
@@ -61,12 +61,12 @@ class Payment
     /**
      * @var int
      */
-    private int $logId;
+    private int $logId = 0;
 
     /**
      * @var string
      */
-    private string $note;
+    private string $note = '';
 
     /**
      * @var string|null
@@ -91,7 +91,7 @@ class Payment
     /**
      * @var string
      */
-    private string $type;
+    private string $type = '';
 
     /**
      * @var array<string>
@@ -117,12 +117,12 @@ class Payment
     /**
      * @var string
      */
-    private string $updated;
+    private string $updated = '';
 
     /**
      * @var int
      */
-    private int $visState;
+    private int $visState = 0;
 
     /**
      * @var Connection
@@ -352,9 +352,9 @@ class Payment
     }
 
     /**
-     * @return object
+     * @return object|null
      */
-    public function getAmount(): object
+    public function getAmount(): ?object
     {
         return $this->amount;
     }

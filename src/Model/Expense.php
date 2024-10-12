@@ -11,167 +11,167 @@ class Expense
     /**
      * @var int
      */
-    private int $id;
+    private int $id = 0;
 
     /**
      * @var int
      */
-    private int $expenseId;
+    private int $expenseId = 0;
 
     /**
      * @var int
      */
-    private int $categoryId;
+    private int $categoryId = 0;
 
     /**
      * @var int
      */
-    private int $projectId;
+    private int $projectId = 0;
+
+    /**
+     * @var int|null
+     */
+    private ?int $invoiceId = null;
 
     /**
      * @var int
      */
-    private int $invoiceId;
+    private int $clientId = 0;
 
     /**
-     * @var int
+     * @var int|null
      */
-    private int $clientId;
+    private ?int $profileId = null;
 
     /**
-     * @var int
+     * @var string|null
      */
-    private int $profileId;
-
-    /**
-     * @var string
-     */
-    private string $transactionId;
+    private ?string $transactionId = null;
 
     /**
      * @var string
      */
-    private string $markupPercent;
+    private string $markupPercent = '';
 
     /**
-     * @var string
+     * @var string|null
      */
-    private string $taxName1;
+    private ?string $taxName1 = null;
 
     /**
-     * @var object
+     * @var object|null
      */
-    private object $taxAmount1;
+    private ?object $taxAmount1 = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    private string $taxPercent1;
+    private ?string $taxPercent1 = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    private string $taxName2;
+    private ?string $taxName2 = null;
 
     /**
-     * @var object
+     * @var object|null
      */
-    private object $taxAmount2;
+    private ?object $taxAmount2 = null;
 
     /**
-     * @var string
+     * @var string|null
      */
-    private string $taxPercent2;
+    private ?string $taxPercent2 = null;
 
     /**
      * @var bool
      */
-    private bool $isDuplicate;
+    private bool $isDuplicate = false;
 
     /**
      * @var string
      */
-    private string $accountName;
+    private string $accountName = '';
 
     /**
      * @var int
      */
-    private int $visState;
+    private int $visState = 0;
 
     /**
      * @var int
      */
-    private int $status;
+    private int $status = 0;
 
     /**
      * @var string
      */
-    private string $bankName;
+    private string $bankName = '';
 
     /**
      * @var string
      */
-    private string $updated;
+    private string $updated = '';
 
     /**
      * @var string
      */
-    private string $vendor;
+    private string $vendor = '';
 
     /**
      * @var int
      */
-    private int $extSystemId;
+    private int $extSystemId = 0;
 
     /**
      * @var int
      */
-    private int $staffId;
+    private int $staffId = 0;
 
     /**
      * @var string
      */
-    private string $date;
+    private string $date = '';
 
     /**
      * @var bool
      */
-    private bool $hasReceipt;
+    private bool $hasReceipt = false;
 
     /**
      * @var string
      */
-    private string $accountingSystemId;
+    private string $accountingSystemId = '';
 
     /**
-     * @var int
+     * @var int|null
      */
-    private int $backgroundJobId;
+    private ?int $backgroundJobId = null;
 
     /**
      * @var string
      */
-    private string $notes;
+    private string $notes = '';
 
     /**
      * @var int
      */
-    private int $extInvoiceId;
+    private int $extInvoiceId = 0;
 
     /**
-     * @var object
+     * @var object|null
      */
-    private object $amount;
+    private ?object $amount = null;
 
     /**
      * @var bool
      */
-    private bool $compoundedTax;
+    private bool $compoundedTax = false;
 
     /**
-     * @var int
+     * @var int|null
      */
-    private int $accountId;
+    private ?int $accountId = null;
 
     /**
      * @var Connection
@@ -597,9 +597,9 @@ class Expense
     }
 
     /**
-     * @return object
+     * @return object|null
      */
-    public function getTaxAmount1(): object
+    public function getTaxAmount1(): ?object
     {
         return $this->taxAmount1;
     }
@@ -621,9 +621,9 @@ class Expense
     }
 
     /**
-     * @return object
+     * @return object|null
      */
-    public function getTaxAmount2(): object
+    public function getTaxAmount2(): ?object
     {
         return $this->taxAmount2;
     }
@@ -757,9 +757,9 @@ class Expense
     }
 
     /**
-     * @return object
+     * @return object|null
      */
-    public function getAmount(): object
+    public function getAmount(): ?object
     {
         return $this->amount;
     }
@@ -864,10 +864,10 @@ class Expense
     }
 
     /**
-     * @param string $id
+     * @param string|int $id
      * @return Expense
      */
-    public function getById(string $id): Expense
+    public function getById(string|int $id): Expense
     {
         return $this->fromObject($this->conn->get('expenses/expenses/' . $id)->expense);
     }

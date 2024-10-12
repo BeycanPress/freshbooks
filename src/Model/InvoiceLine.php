@@ -9,17 +9,17 @@ class InvoiceLine
     /**
      * @var int
      */
-    private int $invoiceId;
+    private int $invoiceId = 0;
 
     /**
      * @var string
      */
-    private string $name;
+    private string $name = '';
 
     /**
      * @var int
      */
-    private int $quantity;
+    private int $quantity = 0;
 
     /**
      * @var string|null
@@ -57,14 +57,14 @@ class InvoiceLine
     private ?float $taxAmount2 = null;
 
     /**
-     * @var object
+     * @var object|null
      */
-    private object $unitCost;
+    private ?object $unitCost = null;
 
     /**
-     * @var object
+     * @var object|null
      */
-    private object $amount;
+    private ?object $amount = null;
 
 
     /**
@@ -271,17 +271,17 @@ class InvoiceLine
     }
 
     /**
-     * @return object
+     * @return object|null
      */
-    public function getUnitCost(): object
+    public function getUnitCost(): ?object
     {
         return $this->unitCost;
     }
 
     /**
-     * @return object
+     * @return object|null
      */
-    public function getAmount(): object
+    public function getAmount(): ?object
     {
         return $this->amount;
     }

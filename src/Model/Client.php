@@ -14,32 +14,32 @@ class Client
     /**
      * @var int
      */
-    private int $id;
+    private int $id = 0;
 
     /**
      * @var string
      */
-    private string $role;
+    private string $role = '';
 
     /**
      * @var string
      */
-    private string $firstName;
+    private string $firstName = '';
 
     /**
      * @var string
      */
-    private string $lastName;
+    private string $lastName = '';
 
     /**
      * @var string
      */
-    private string $email;
+    private string $email = '';
 
     /**
      * @var string
      */
-    private string $organization;
+    private string $organization = '';
 
     /**
      * @var ?string
@@ -84,7 +84,7 @@ class Client
     /**
      * @var string
      */
-    private string $billingStreet;
+    private string $billingStreet = '';
 
     /**
      * @var ?string
@@ -94,17 +94,17 @@ class Client
     /**
      * @var string
      */
-    private string $billingCity;
+    private string $billingCity = '';
 
     /**
      * @var string
      */
-    private string $billingCountry;
+    private string $billingCountry = '';
 
     /**
      * @var string
      */
-    private string $billingProvince;
+    private string $billingProvince = '';
 
     /**
      * @var string|null
@@ -114,12 +114,12 @@ class Client
     /**
      * @var string
      */
-    private string $currencyCode;
+    private string $currencyCode = '';
 
     /**
      * @var string
      */
-    private string $language;
+    private string $language = '';
 
     /**
      * @var ?string
@@ -729,10 +729,12 @@ class Client
         $this->setLastActivity($data->last_activity);
         $this->setFace($data->face ?? null);
         $this->setLateFee($data->late_fee ?? null);
-        $this->setLateReminders($data->late_reminders);
+        $this->setLateReminders($data->late_reminders ?? []);
 
-        foreach ($data->contacts as $value) {
-            $this->addContact((new ClientContact())->fromArray($value));
+        if (isset($data->contacts)) {
+            foreach ($data->contacts as $value) {
+                $this->addContact((new ClientContact())->fromArray($value));
+            }
         }
 
         return $this;

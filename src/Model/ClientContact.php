@@ -9,32 +9,32 @@ class ClientContact
     /**
      * @var string
      */
-    private string $email;
+    private string $email = '';
 
     /**
      * @var string
      */
-    private string $firstName;
+    private string $firstName = '';
 
     /**
      * @var string
      */
-    private string $lastName;
+    private string $lastName = '';
 
     /**
      * @var string
      */
-    private string $phone;
+    private string $phone = '';
 
     /**
      * @var string
      */
-    private string $userId;
+    private string $userId = '';
 
     /**
      * @var string
      */
-    private string $face;
+    private string $face = '';
 
     /**
      * @param string $email

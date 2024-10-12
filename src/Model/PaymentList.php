@@ -18,8 +18,8 @@ class PaymentList
      */
     public function __construct(Connection $conn)
     {
-        foreach ($conn->get('payments/payments') as $value) {
-            $this->list[] = (new Payment($conn))->fromObject($value);
+        foreach ($conn->get('payments/payments')->payments as $value) {
+            $this->list[] = (new Payment($conn))->fromObject((object) $value);
         }
     }
 

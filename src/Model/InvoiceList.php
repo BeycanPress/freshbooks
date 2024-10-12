@@ -18,8 +18,8 @@ class InvoiceList
      */
     public function __construct(Connection $conn)
     {
-        foreach ($conn->get('invoices/invoices') as $value) {
-            $this->list[] = (new Invoice($conn))->fromObject($value);
+        foreach ($conn->get('invoices/invoices')->invoices as $value) {
+            $this->list[] = (new Invoice($conn))->fromObject((object) $value);
         }
     }
 

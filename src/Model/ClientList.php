@@ -18,8 +18,8 @@ class ClientList
      */
     public function __construct(Connection $conn)
     {
-        foreach ($conn->get('users/clients') as $value) {
-            $this->list[] = (new Client($conn))->fromObject($value);
+        foreach ($conn->get('users/clients')->clients as $value) {
+            $this->list[] = (new Client($conn))->fromObject((object) $value);
         }
     }
 

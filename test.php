@@ -13,11 +13,15 @@ $connection = new Connection(
     'https://hosting.beycanpress.net/freshbooks'
 );
 
-$connection->setAccount();
+$accounts = $connection->getAccounts();
+$secondAccount = array_values($accounts)[1];
+$connection->setAccount($secondAccount->account_id);
 
 $email = "test@gmail.com";
 
-if (!$client = $connection->client()->searchByEmail($email)) {
+$client = $connection->client()->searchByEmail($email);
+
+if (!$client) {
     $client = $connection->client()
         ->setEmail($email)
         ->setFirstName("Test")
@@ -26,27 +30,53 @@ if (!$client = $connection->client()->searchByEmail($email)) {
         ->create();
 }
 
-
-$line = (new InvoiceLine())
-->setName("Test Item")
-->setAmount((object) [
-    'amount' => 100,
-    'currency_code' => 'USD'
-])
-->setQuantity(1);
-
-$invoice = $connection->invoice()
-    ->setStatus("draft")
-    ->setCustomerId($client->getId())
-    ->setCreateDate(date("Y-m-d"))
-    ->setLines([$line])
-    ->create();
-
-$connection->payment()
-    ->setInvoiceId($invoice->getId())
+/**
+ * @return void
+ */
+function invoicePayment(): void
+{
+    global $connection, $client;
+    $line = (new InvoiceLine())
+    ->setName("Test Item")
     ->setAmount((object) [
-        "amount" => $invoice->getOutstanding()->amount
+        'amount' => 100,
+        'currency_code' => 'USD'
     ])
-    ->setDate(date("Y-m-d"))
-    ->setType("2Checkout")
+    ->setQuantity(1);
+
+    $invoice = $connection->invoice()
+        ->setStatus("draft")
+        ->setCustomerId($client->getId())
+        ->setCreateDate(date("Y-m-d"))
+        ->setLines([$line])
+        ->create();
+
+    $connection->payment()
+        ->setInvoiceId($invoice->getId())
+        ->setAmount((object) [
+            "amount" => $invoice->getOutstanding()->amount
+        ])
+        ->setDate(date("Y-m-d"))
+        ->setType("2Checkout")
+        ->create();
+}
+
+
+/**
+ * @return void
+ */
+function createExpense(): void
+{
+    global $connection;
+
+    $connection->expense()
+    ->setAmount((object) [
+        "amount" => "10",
+        "code" => "USD"
+    ])
+    ->setStaffId(1)
+    ->setDate(date('Y-m-d'))
+    ->setCategoryId(7397723)
+    ->setVendor("PayPal Pte. Ltd.")
     ->create();
+}
