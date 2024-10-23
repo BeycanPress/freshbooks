@@ -257,9 +257,9 @@ class Invoice
     private ?object $discountTotal = null;
 
     /**
-     * @var float
+     * @var float|int
      */
-    private float $discountValue = 0;
+    private float|int $discountValue = 0;
 
     /**
      * @var string
@@ -804,10 +804,10 @@ class Invoice
     }
 
     /**
-     * @param float $discountValue
+     * @param float|int $discountValue
      * @return Invoice
      */
-    public function setDiscountValue(float $discountValue): Invoice
+    public function setDiscountValue(float|int $discountValue): Invoice
     {
         $this->discountValue = $discountValue;
         return $this;
@@ -1332,9 +1332,9 @@ class Invoice
     }
 
     /**
-     * @return float
+     * @return float|int
      */
-    public function getDiscountValue(): float
+    public function getDiscountValue(): float|int
     {
         return $this->discountValue;
     }

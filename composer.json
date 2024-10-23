@@ -1,6 +1,6 @@
 {
     "name": "beycanpress/freshbooks",
-    "version": "0.1.6",
+    "version": "0.1.7",
     "description": "FreshBooks API SDK.",
     "keywords": ["freshbooks", "api", "sdk"],
     "type": "library",
