@@ -543,10 +543,10 @@ class Payment
     }
 
     /**
-     * @param string $id
+     * @param string|int $id
      * @return Payment
      */
-    public function getById(string $id): Payment
+    public function getById(string|int $id): Payment
     {
         return $this->fromObject($this->conn->get('payments/payments/' . $id)->payment);
     }
