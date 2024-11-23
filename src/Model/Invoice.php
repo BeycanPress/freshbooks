@@ -324,7 +324,7 @@ class Invoice
     /**
      * @var array<InvoiceLine>
      */
-    private array $lines;
+    private array $lines = [];
 
     /**
      * @var Connection
@@ -1604,10 +1604,10 @@ class Invoice
     }
 
     /**
-     * @param string $id
+     * @param string|int $id
      * @return Invoice
      */
-    public function getById(string $id): Invoice
+    public function getById(string|int $id): Invoice
     {
         return $this->fromObject($this->conn->get('invoices/invoices/' . $id)->invoice);
     }
