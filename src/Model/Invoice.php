@@ -142,9 +142,9 @@ class Invoice
     private string $paymentStatus = '';
 
     /**
-     * @var string
+     * @var string|null
      */
-    private string $vatName = '';
+    private ?string $vatName = '';
 
     /**
      * @var string
@@ -574,10 +574,10 @@ class Invoice
     }
 
     /**
-     * @param string $vatName
+     * @param string|null $vatName
      * @return Invoice
      */
-    public function setVatName(string $vatName): Invoice
+    public function setVatName(?string $vatName): Invoice
     {
         $this->vatName = $vatName;
         return $this;
@@ -939,6 +939,8 @@ class Invoice
      */
     public function addLine(InvoiceLine $line): Invoice
     {
+        $lineId = count($this->lines) + 1;
+        $line->setLineId($lineId);
         $this->lines[] = $line;
         return $this;
     }
@@ -1148,9 +1150,9 @@ class Invoice
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getVatName(): string
+    public function getVatName(): ?string
     {
         return $this->vatName;
     }
@@ -1590,13 +1592,13 @@ class Invoice
         $this->setTerms($data->terms);
         $this->setUpdated($data->updated);
         $this->setV3Status($data->v3_status);
-        $this->setVatName($data->vat_name);
+        $this->setVatName($data->vat_name ?? null);
         $this->setVatNumber($data->vat_number);
         $this->setVisState($data->vis_state);
 
         if (isset($data->lines)) {
             foreach ($data->lines as $value) {
-                $this->addLine((new InvoiceLine())->fromArray($value));
+                $this->addLine((new InvoiceLine())->fromObject($value));
             }
         }
 
@@ -1605,11 +1607,13 @@ class Invoice
 
     /**
      * @param string|int $id
+     * @param bool $lines
      * @return Invoice
      */
-    public function getById(string|int $id): Invoice
+    public function getById(string|int $id, bool $lines = false): Invoice
     {
-        return $this->fromObject($this->conn->get('invoices/invoices/' . $id)->invoice);
+        $endpoint = 'invoices/invoices/' . $id . ($lines ? '?include%5B%5D=lines' : '');
+        return $this->fromObject($this->conn->get($endpoint)->invoice);
     }
 
     /**
@@ -1633,6 +1637,22 @@ class Invoice
         ], true)->invoice);
     }
 
+    /**
+     * @param int|null $id
+     * @return Invoice
+     */
+    public function updateLines(?int $id = null): Invoice
+    {
+        $lines = array_map(function ($val) {
+            return $val->toArray();
+        }, $this->getLines());
+
+        return $this->fromObject($this->conn->put('invoices/invoices/' . strval($id ?? $this->getId()), [
+            "invoice" => [
+                "lines" => $lines
+            ]
+        ], true)->invoice);
+    }
 
     /**
      * @param int|null $id

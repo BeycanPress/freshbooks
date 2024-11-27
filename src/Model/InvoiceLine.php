@@ -12,9 +12,74 @@ class InvoiceLine
     private int $invoiceId = 0;
 
     /**
+     * @var int
+     */
+    private int $lineId = 1;
+
+    /**
+     * @var int
+     */
+    private int $baseCampId = 0;
+
+    /**
+     * @var int|null
+     */
+    private ?int $taskNo = null;
+
+    /**
      * @var string
      */
     private string $name = '';
+
+    /**
+     * @var mixed
+     */
+    private mixed $compoundedTax = false;
+
+    /**
+     * @var mixed
+     */
+    private mixed $date = null;
+
+    /**
+     * @var object|null
+     */
+    private ?object $discount = null;
+
+    /**
+     * @var mixed
+     */
+    private mixed $domain = null;
+
+    /**
+     * @var mixed
+     */
+    private mixed $modernProjectId = null;
+
+    /**
+     * @var array<mixed>
+     */
+    private mixed $modernTimeEntries = [];
+
+    /**
+     * @var mixed
+     */
+    private mixed $productCode = null;
+
+    /**
+     * @var mixed
+     */
+    private mixed $retainerId = null;
+
+    /**
+     * @var mixed
+     */
+    private mixed $retainerPeriodId = null;
+
+    /**
+     * @var string|null
+     */
+    private mixed $taxRuleCode = null;
 
     /**
      * @var int
@@ -22,9 +87,9 @@ class InvoiceLine
     private int $quantity = 0;
 
     /**
-     * @var string|null
+     * @var string|int|null
      */
-    private ?string $type = null;
+    private string|int|null $type = null;
 
     /**
      * @var string|null
@@ -57,6 +122,11 @@ class InvoiceLine
     private ?float $taxAmount2 = null;
 
     /**
+     * @var string|null
+     */
+    private ?string $unitCode = null;
+
+    /**
      * @var object|null
      */
     private ?object $unitCost = null;
@@ -74,6 +144,146 @@ class InvoiceLine
     public function setInvoiceId(int $invoiceId): InvoiceLine
     {
         $this->invoiceId = $invoiceId;
+        return $this;
+    }
+
+    /**
+     * @param int $lineId
+     * @return InvoiceLine
+     */
+    public function setLineId(int $lineId): InvoiceLine
+    {
+        $this->lineId = $lineId;
+        return $this;
+    }
+
+    /**
+     * @param int $baseCampId
+     * @return InvoiceLine
+     */
+    public function setBaseCampId(int $baseCampId): InvoiceLine
+    {
+        $this->baseCampId = $baseCampId;
+        return $this;
+    }
+
+    /**
+     * @param int|null $taskNo
+     * @return InvoiceLine
+     */
+    public function setTaskNo(?int $taskNo): InvoiceLine
+    {
+        $this->taskNo = $taskNo;
+        return $this;
+    }
+
+    /**
+     * @param mixed $compoundedTax
+     * @return InvoiceLine
+     */
+    public function setCompoundedTax(mixed $compoundedTax): InvoiceLine
+    {
+        $this->compoundedTax = $compoundedTax;
+        return $this;
+    }
+
+    /**
+     * @param mixed $date
+     * @return InvoiceLine
+     */
+    public function setDate(mixed $date): InvoiceLine
+    {
+        $this->date = $date;
+        return $this;
+    }
+
+    /**
+     * @param object|null $discount
+     * @return InvoiceLine
+     */
+    public function setDiscount(?object $discount): InvoiceLine
+    {
+        $this->discount = $discount;
+        return $this;
+    }
+
+    /**
+     * @param mixed $domain
+     * @return InvoiceLine
+     */
+    public function setDomain(mixed $domain): InvoiceLine
+    {
+        $this->domain = $domain;
+        return $this;
+    }
+
+    /**
+     * @param mixed $modernProjectId
+     * @return InvoiceLine
+     */
+    public function setModernProjectId(mixed $modernProjectId): InvoiceLine
+    {
+        $this->modernProjectId = $modernProjectId;
+        return $this;
+    }
+
+    /**
+     * @param array<mixed> $modernTimeEntries
+     * @return InvoiceLine
+     */
+    public function setModernTimeEntries(array $modernTimeEntries): InvoiceLine
+    {
+        $this->modernTimeEntries = $modernTimeEntries;
+        return $this;
+    }
+
+    /**
+     * @param mixed $productCode
+     * @return InvoiceLine
+     */
+    public function setProductCode(mixed $productCode): InvoiceLine
+    {
+        $this->productCode = $productCode;
+        return $this;
+    }
+
+    /**
+     * @param mixed $retainerId
+     * @return InvoiceLine
+     */
+    public function setRetainerId(mixed $retainerId): InvoiceLine
+    {
+        $this->retainerId = $retainerId;
+        return $this;
+    }
+
+    /**
+     * @param mixed $retainerPeriodId
+     * @return InvoiceLine
+     */
+    public function setRetainerPeriodId(mixed $retainerPeriodId): InvoiceLine
+    {
+        $this->retainerPeriodId = $retainerPeriodId;
+        return $this;
+    }
+
+    /**
+     * @param string|null $taxRuleCode
+     * @return InvoiceLine
+     */
+    public function setTaxRuleCode(?string $taxRuleCode): InvoiceLine
+    {
+        $this->taxRuleCode = $taxRuleCode;
+        return $this;
+    }
+
+    /**
+     * @param string|null $unitCode
+     * @return InvoiceLine
+     */
+    public function setUnitCode(?string $unitCode): InvoiceLine
+    {
+        $this->unitCode = $unitCode;
         return $this;
     }
 
@@ -98,10 +308,10 @@ class InvoiceLine
     }
 
     /**
-     * @param string|null $type
+     * @param string|int|null $type
      * @return InvoiceLine
      */
-    public function setType(?string $type): InvoiceLine
+    public function setType(string|int|null $type): InvoiceLine
     {
         $this->type = $type;
         return $this;
@@ -199,6 +409,118 @@ class InvoiceLine
     }
 
     /**
+     * @return int
+     */
+    public function getLineId(): int
+    {
+        return $this->lineId;
+    }
+
+    /**
+     * @return int
+     */
+    public function getBaseCampId(): int
+    {
+        return $this->baseCampId;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getTaskNo(): ?int
+    {
+        return $this->taskNo;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCompoundedTax(): mixed
+    {
+        return $this->compoundedTax;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDate(): mixed
+    {
+        return $this->date;
+    }
+
+    /**
+     * @return object|null
+     */
+    public function getDiscount(): ?object
+    {
+        return $this->discount;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDomain(): mixed
+    {
+        return $this->domain;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getModernProjectId(): mixed
+    {
+        return $this->modernProjectId;
+    }
+
+    /**
+     * @return array<mixed>
+     */
+    public function getModernTimeEntries(): array
+    {
+        return $this->modernTimeEntries;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductCode(): mixed
+    {
+        return $this->productCode;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRetainerId(): mixed
+    {
+        return $this->retainerId;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getRetainerPeriodId(): mixed
+    {
+        return $this->retainerPeriodId;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getTaxRuleCode(): ?string
+    {
+        return $this->taxRuleCode;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getUnitCode(): ?string
+    {
+        return $this->unitCode;
+    }
+
+    /**
      * @return string
      */
     public function getName(): string
@@ -215,9 +537,9 @@ class InvoiceLine
     }
 
     /**
-     * @return string|null
+     * @return string|int|null
      */
-    public function getType(): ?string
+    public function getType(): string|int|null
     {
         return $this->type;
     }
@@ -291,8 +613,22 @@ class InvoiceLine
      */
     public function toArray(): array
     {
-        return array_filter([
+        return [
             'invoiceid' => $this->invoiceId,
+            'lineid' => $this->lineId,
+            'taskno' => $this->taskNo,
+            'basecampid' => $this->baseCampId,
+            'compounded_tax' => $this->compoundedTax,
+            'date' => $this->date,
+            'discount' => $this->discount,
+            'domain' => $this->domain,
+            'modern_project_id' => $this->modernProjectId,
+            'modern_time_entries' => $this->modernTimeEntries,
+            'product_code' => $this->productCode,
+            'retainer_id' => $this->retainerId,
+            'retainer_period_id' => $this->retainerPeriodId,
+            'tax_rule_code' => $this->taxRuleCode,
+            'unit_code' => $this->unitCode,
             'name' => $this->name,
             'qty' => $this->quantity,
             'type' => $this->type,
@@ -304,7 +640,7 @@ class InvoiceLine
             'taxAmount2' => $this->taxAmount2,
             'unit_cost' => $this->unitCost,
             'amount' => $this->amount
-        ]);
+        ];
     }
 
 
@@ -315,15 +651,38 @@ class InvoiceLine
     public function fromArray(array $data): InvoiceLine
     {
         return $this->setInvoiceId($data['invoiceid'])
+            ->setLineId($data['lineid'])
+            ->setTaskNo($data['taskno'] ?? null)
+            ->setBaseCampId($data['basecampid'])
+            ->setCompoundedTax($data['compounded_tax'] ?? false)
+            ->setDate($data['date'] ?? null)
+            ->setDiscount($data['discount'] ?? null)
+            ->setDomain($data['domain'] ?? null)
+            ->setModernProjectId($data['modern_project_id'] ?? null)
+            ->setModernTimeEntries($data['modern_time_entries'] ?? [])
+            ->setProductCode($data['product_code'] ?? null)
+            ->setRetainerId($data['retainer_id'] ?? null)
+            ->setRetainerPeriodId($data['retainer_period_id'] ?? null)
+            ->setTaxRuleCode($data['tax_rule_code'] ?? null)
+            ->setUnitCode($data['unit_code'] ?? null)
             ->setName($data['name'])
-            ->setQuantity($data['qty'])
-            ->setType($data['type'])
+            ->setQuantity((int) $data['qty'])
+            ->setType($data['type'] ?? null)
             ->setDescription($data['description'])
             ->setExpenseId($data['expenseid'])
-            ->setTaxName1($data['taxName1'])
-            ->setTaxAmount1($data['taxAmount1'])
-            ->setTaxName2($data['taxName2'])
-            ->setTaxAmount2($data['taxAmount2'])
+            ->setTaxName1($data['taxName1'] ?? null)
+            ->setTaxAmount1((float) $data['taxAmount1'] ?? null)
+            ->setTaxName2($data['taxName2'] ?? null)
+            ->setTaxAmount2((float) $data['taxAmount2'] ?? null)
             ->setAmount($data['amount']);
+    }
+
+    /**
+     * @param object $data
+     * @return InvoiceLine
+     */
+    public function fromObject(object $data): InvoiceLine
+    {
+        return $this->fromArray((array) $data);
     }
 }
