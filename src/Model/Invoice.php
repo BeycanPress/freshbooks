@@ -147,9 +147,9 @@ class Invoice
     private ?string $vatName = '';
 
     /**
-     * @var string
+     * @var string|null
      */
-    private string $vatNumber = '';
+    private ?string $vatNumber = '';
 
     /**
      * @var bool
@@ -584,10 +584,10 @@ class Invoice
     }
 
     /**
-     * @param string $vatNumber
+     * @param string|null $vatNumber
      * @return Invoice
      */
-    public function setVatNumber(string $vatNumber): Invoice
+    public function setVatNumber(?string $vatNumber): Invoice
     {
         $this->vatNumber = $vatNumber;
         return $this;
@@ -1158,9 +1158,9 @@ class Invoice
     }
 
     /**
-     * @return string
+     * @return string|null
      */
-    public function getVatNumber(): string
+    public function getVatNumber(): ?string
     {
         return $this->vatNumber;
     }
@@ -1593,7 +1593,7 @@ class Invoice
         $this->setUpdated($data->updated);
         $this->setV3Status($data->v3_status);
         $this->setVatName($data->vat_name ?? null);
-        $this->setVatNumber($data->vat_number);
+        $this->setVatNumber($data->vat_number ?? null);
         $this->setVisState($data->vis_state);
 
         if (isset($data->lines)) {
